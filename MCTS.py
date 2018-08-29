@@ -105,8 +105,8 @@ class MCTS():
                     u = self.Qsa[(s,a)] + self.args.cpuct*self.Ps[s][a]*math.sqrt(self.Ns[s])/(1+self.Nsa[(s,a)])
                 else:
                     u = self.args.cpuct*self.Ps[s][a]*math.sqrt(self.Ns[s] + EPS)     # Q = 0 ?
-                print(u)
-                if u > cur_best:
+                #print(u)
+                if u.any() > cur_best:
                     cur_best = u
                     best_act = a
 
