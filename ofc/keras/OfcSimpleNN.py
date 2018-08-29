@@ -17,11 +17,11 @@ class SimpleNN():
         # Neural Net
         self.input_boards = Input(shape=(self.board_x, self.board_y))
         flat_input = Flatten()(self.input_boards)
-        self.hidden1 = Dense(64, activation='relu')(flat_input)
-        self.hidden2 = Dense(64, activation='relu')(self.hidden1)
+        hidden1 = Dense(64, activation='relu')(flat_input)
+        hidden2 = Dense(64, activation='relu')(hidden1)
 
-        self.pi = Dense(self.action_size, activation='softmax', name='pi')(self.hidden2)
-        self.v = Dense(1, activation='tanh', name='v')(self.hidden2)
+        self.pi = Dense(self.action_size, activation='softmax', name='pi')(hidden2)
+        self.v = Dense(1, activation='tanh', name='v')(hidden2)
 
         self.model = Model(inputs=self.input_boards, outputs=[self.pi, self.v])
                 
