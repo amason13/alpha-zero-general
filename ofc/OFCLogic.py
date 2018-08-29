@@ -591,7 +591,8 @@ def board_to_hands(board,hand1,hand2):
     hand1.reset()
     hand2.reset()
     #board = np.array(board)
-    #board = list(board)
+    board = board[0]
+    board = list(board)
     unseen = []
     full_deck = []
 
