@@ -218,8 +218,8 @@ class OFC(Game):
         # canonical form of board is not as simple as *-1 like in other games, 
         # due to discards which can only be seen by current player.
         can_board = hands_to_board(player_hand,self.opponent_hand(player_hand))
-        can_board = np.array(can_board)
-        can_board = can_board[np.newaxis,:]
+        #can_board = np.array(can_board)
+        #can_board = can_board[np.newaxis,:]
 
         return can_board
     
