@@ -587,7 +587,7 @@ def hands_to_board(hand1,hand2):
 
     board = np.array(board)
     board = board[np.newaxis,:]
-    
+    return board
 
 
 def board_to_hands(board,hand1,hand2):
