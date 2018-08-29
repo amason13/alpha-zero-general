@@ -56,6 +56,7 @@ class OFC(Game):
         # get initial board for each deal - (represented by a 52x1 numpy array) 
         board = hands_to_board(self.ph1,self.ph2)
         board = np.array(board)
+        board = board[np.newaxis,:]
         return board
 
     def getBoardSize(self):
