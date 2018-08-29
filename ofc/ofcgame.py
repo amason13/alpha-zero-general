@@ -1,18 +1,15 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import print_function
-import sys
-sys.path.append('..')
 from Game import Game
 import numpy as np
 import itertools
-from ofc import methods
+import ofclogic
 from treys import Deck
 
 """
 Game class implementation for the game of Open Faced Chinese Poker.
 Author: amason13
-Date: 23 Aug, 2018.
+Date: 29 Aug, 2018.
 """
 class OFC(Game):
     # ph1, ph2 are playerHand objects, n = 1,2,3 for different variants of ofc.
