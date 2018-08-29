@@ -55,6 +55,7 @@ class OFC(Game):
             
         # get initial board for each deal - (represented by a 52x1 numpy array) 
         board = hands_to_board(self.ph1,self.ph2)
+        board = np.array(board)
         return board
 
     def getBoardSize(self):
@@ -63,7 +64,7 @@ class OFC(Game):
             (x,y): a tuple of board dimensions
         """
         # board array always same size
-        return (52,1)
+        return (1,52)
 
     def getActionSize(self):
         """
@@ -150,6 +151,7 @@ class OFC(Game):
         self.round += 1
         # determine next board
         nextboard = hands_to_board(self.PLAYERS_HAND_DICT[-player],self.PLAYERS_HAND_DICT[player])
+        nextboard = np.array(nextboard)
         return (nextboard, -player)
         
         
@@ -208,6 +210,7 @@ class OFC(Game):
         # canonical form of board is not as simple as *-1 like in other games, 
         # due to discards which can only be seen by current player.
         can_board = hands_to_board(player_hand,self.opponent_hand(player_hand))
+        can_board = np.array(can_board)
         return can_board
     
     
@@ -224,6 +227,7 @@ class OFC(Game):
         # Symmetries in this context only occur by mapping suits to other suits. 
         # For example the state [Ah Kh Qh Jh Ts] is the same as [Ad Kd Qd Jd Tc].
         
+        board = list(board)
         # separate into suits            
         S = [board[i] for i in range(0,13)]
         H = [board[i] for i in range(13,26)]
@@ -244,6 +248,7 @@ class OFC(Game):
         for deck in l:
             for i in range(52):
                 deck[i]=board[i]
+            deck = np.array(deck)
         # tuple with policy
         for el in l:
             el = (el,pi)
