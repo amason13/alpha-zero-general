@@ -45,7 +45,7 @@ class NNetWrapper(NeuralNet):
         # timing
         start = time.time()
         
-        board = np.array(board)
+        print(board.shape())
         # preparing input
         board = board[np.newaxis, :, :]
 
