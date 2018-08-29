@@ -140,7 +140,7 @@ class OFC(Game):
             if len(player_hand.dealt_cards) == 1:
                 ACTION_DICT_1[action].append(player_hand.dealt_cards.pop(0))
             else: 
-                for i in range(len(player.dealt_cards):
+                for i in range(len(player.dealt_cards)):
                     CARDS_DEALT_TO_DICT_MAP[len(player_hand.dealt_cards)][action][i].append(player_hand.dealt_cards[i])
             player.dealt_cards = []
         
