@@ -1,2 +1,2 @@
-from OFCLogic import *
-from OFCGame import *
+from .OFCLogic import *
+from .OFCGame import *
