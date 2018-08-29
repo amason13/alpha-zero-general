@@ -49,7 +49,7 @@ class NNetWrapper(NeuralNet):
         board = board[np.newaxis, : ] #, :]
 
         # run
-        pi, v = self.nnet.model.predict(board, batch_size = self.args.batch_size)
+        pi, v = self.nnet.model.predict(board, batch_size = args.batch_size)
 
         #print('PREDICTION TIME TAKEN : {0:03f}'.format(time.time()-start))
         return pi[0], v[0]
