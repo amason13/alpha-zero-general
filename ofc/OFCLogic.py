@@ -389,7 +389,7 @@ class playerHand:
             board[full_deck.index(card)] = -3
         
         board = np.array(board)
-        board = board[np.newaxis,:]
+        board = board.reshape(4,13)
         return board
 
 def split_by_rank(cards):
@@ -547,7 +547,6 @@ def estimate_score(hand1, hand2, deck):
     #average scores and ranks
     av_score = score/n
     
-        
     return av_score
 
                 
@@ -585,17 +584,16 @@ def hands_to_board(hand1,hand2):
     for card in hand2.bottom_hand:
         board[full_deck.index(card)] = -3    
 
-    board = np.array(board)
-    board = board[np.newaxis,:]
+    board = board.reshape(4,13)
+    
     return board
 
 
 def board_to_hands(board,hand1,hand2):
     hand1.reset()
     hand2.reset()
-    board = board[0]
+    board = board.reshape(1,52)
     board = list(board)
-    print('Board:',board)
     unseen = []
     full_deck = []
 
