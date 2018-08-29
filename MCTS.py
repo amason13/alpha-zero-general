@@ -106,7 +106,7 @@ class MCTS():
                 else:
                     u = self.args.cpuct*self.Ps[s][a]*math.sqrt(self.Ns[s] + EPS)     # Q = 0 ?
                 #print(u)
-                if u.any() > cur_best:
+                if u > cur_best:
                     cur_best = u
                     best_act = a
 
