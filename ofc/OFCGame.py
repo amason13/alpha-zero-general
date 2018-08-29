@@ -70,9 +70,6 @@ class OFC(Game):
         Returns:
             actionSize: number of all possible actions
         """
-        # maps 1 or -1 to playerHand object
-        player_hand = self.PLAYERS_HAND_DICT[player]
-        
         # if the first round where 5 cards are dealt and must be placed (assuming not in fantasy)
         if self.round <= 2:
             return 232
