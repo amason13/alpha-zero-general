@@ -172,8 +172,8 @@ class OFC(Game):
         # map 1 or -1 to player hand
         player_hand = self.PLAYERS_HAND_DICT[player]
         opponent_hand = self.PLAYERS_HAND_DICT[-player]
-        board = board[0]
-        board = np.array(board)
+        #board = board[0]
+        #board = np.array(board)
         # convert board to player hands
         board_to_hands(board,player_hand,opponent_hand)
         
