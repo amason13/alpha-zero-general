@@ -76,9 +76,13 @@ class MCTS():
 
         if s not in self.Ps:
             # leaf node
+            print('Ps: ',self.Ps)
             self.Ps[s], v = self.nnet.predict(canonicalBoard)
+            print('Ps-s: ',self.Ps[s])
             valids = self.game.getValidMoves(canonicalBoard, 1)
+            print('valids: ',valids)
             self.Ps[s] = self.Ps[s]*valids      # masking invalid moves
+            print('Ps-s: ',self.Ps[s])
             sum_Ps_s = np.sum(self.Ps[s])
             if sum_Ps_s > 0:
                 self.Ps[s] /= sum_Ps_s    # renormalize
@@ -105,9 +109,9 @@ class MCTS():
                 if (s,a) in self.Qsa:
                     u = self.Qsa[(s,a)] + self.args.cpuct*self.Ps[s][a]*math.sqrt(self.Ns[s])/(1+self.Nsa[(s,a)])
                 else:
-                    print(self.Ps[s][a])
+                    print('Ps-s-a: ',self.Ps[s][a])
                     u = self.args.cpuct*self.Ps[s][a]*math.sqrt(self.Ns[s] + EPS)     # Q = 0 ?
-                    print('U:', u, np.shape(u))
+                    #print('U:', u, np.shape(u))
                 if u > cur_best:
                     cur_best = u
                     best_act = a
