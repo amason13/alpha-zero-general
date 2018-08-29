@@ -590,6 +590,7 @@ def hands_to_board(hand1,hand2):
 def board_to_hands(board,hand1,hand2):
     hand1.reset()
     hand2.reset()
+    board = np.array(board)
     board = list(board)
     unseen = []
     full_deck = []
@@ -614,3 +615,5 @@ def board_to_hands(board,hand1,hand2):
         BOARD_TO_HAND[board[i]].append(full_deck[i])
         
     board = np.array(board)
+    board = board[np.newaxis,:]
+
