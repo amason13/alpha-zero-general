@@ -15,17 +15,15 @@ class SimpleNN():
         self.args = args
 
         # Neural Net
+        self.input_boards = Input(shape=(13, 4))
         
-        self.model = Sequential()
-        
-        self.model.add(Dense(52, input_shape=(13, 4), activation = 'relu')) # input
-        
-        self.model.add(Dense(64, activation='relu')) # hidden1 
-        self.model.add(Dense(64, activation='relu')) # hidden2
-        
-        self.pi = Dense(self.action_size, activation='softmax', name='pi')
-        self.v = Dense(1, activation='tanh', name='v')
-        
-        self.model.add([self.pi, self.v])
-        
+        x = Dense(64, activation='relu')(x)
+        x = Dense(64, activation='relu')(x)
+        x = Dense(64, activation='relu')(x)
+
+        self.pi = Dense(self.action_size, activation='softmax', name='pi')(x)
+        self.v = Dense(1, activation='tanh', name='v')(x)
+
+        self.model = Model(inputs=self.input_boards, outputs=[self.pi, self.v])
+                
         self.model.compile(loss=['categorical_crossentropy','mean_squared_error'], optimizer=SGD(args.lr,momentum=0.9,nesterov=True))
