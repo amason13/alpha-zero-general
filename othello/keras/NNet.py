@@ -44,9 +44,10 @@ class NNetWrapper(NeuralNet):
         """
         # timing
         start = time.time()
-
+        print('b1: ',board)
         # preparing input
         board = board[np.newaxis, :, :]
+        print('b2: ',board)
 
         # run
         pi, v = self.nnet.model.predict(board)
