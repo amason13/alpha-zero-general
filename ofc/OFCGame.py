@@ -164,9 +164,9 @@ class OFC(Game):
         """
         # map 1 or -1 to player hand
         player_hand = self.PLAYERS_HAND_DICT[player]
-        
+        opponent_hand = self.PLAYERS_HAND_DICT[-player]
         # convert board to player hands
-        board_to_hands(player_hand,self.opponent_hand(player_hand))
+        board_to_hands(board,player_hand,opponent_hand)
         
         # get available actions
         return player_hand.get_available_actions()
