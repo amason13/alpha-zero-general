@@ -19,7 +19,6 @@ class SimpleNN():
         
         x = Dense(64, activation='relu')(self.input_boards)
         x = Dense(64, activation='relu')(x)
-        Model.add(Flatten())
         x = Dense(64, activation='relu')(x)
 
         self.pi = Dense(self.action_size, activation='softmax', name='pi')(x)
