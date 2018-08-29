@@ -2,6 +2,7 @@ from Coach import Coach
 from ofc.OFCGame import OFCGame as Game
 from ofc.pytorch.NNet import NNetWrapper as nn
 from utils import *
+from ofc.OFCLogic import playerHand
 
 args = dotdict({
     'numIters': 1000,
@@ -20,8 +21,11 @@ args = dotdict({
 
 })
 
+p1 = playerHand()
+p2 = playerHand()
+
 if __name__=="__main__":
-    g = Game(6)
+    g = Game(p1,p2,1)
     nnet = nn(g)
 
     if args.load_model:
