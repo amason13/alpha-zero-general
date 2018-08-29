@@ -58,6 +58,10 @@ class OFC(Game):
         board = np.array(board)
         board = board[np.newaxis,:]
         return board
+        
+        #board = [None]*52
+        #for i in range(52):
+        #    board[i] = [0]*52
 
     def getBoardSize(self):
         """
@@ -153,6 +157,7 @@ class OFC(Game):
         # determine next board
         nextboard = hands_to_board(self.PLAYERS_HAND_DICT[-player],self.PLAYERS_HAND_DICT[player])
         nextboard = np.array(nextboard)
+        nextboard = nextboard[np.newaxis,:]
         return (nextboard, -player)
         
         
@@ -169,6 +174,7 @@ class OFC(Game):
         # map 1 or -1 to player hand
         player_hand = self.PLAYERS_HAND_DICT[player]
         opponent_hand = self.PLAYERS_HAND_DICT[-player]
+        board = np.array(board)
         # convert board to player hands
         board_to_hands(board,player_hand,opponent_hand)
         
@@ -186,6 +192,7 @@ class OFC(Game):
                Score if game has ended (could be 0).
                
         """
+        board = np.array(board)
         player_hand = self.PLAYERS_HAND_DICT[player]
         op_hand = self.opponent_hand(player_hand)
         
@@ -212,6 +219,8 @@ class OFC(Game):
         # due to discards which can only be seen by current player.
         can_board = hands_to_board(player_hand,self.opponent_hand(player_hand))
         can_board = np.array(can_board)
+        can_board = can_board[np.newaxis,:]
+
         return can_board
     
     
@@ -227,7 +236,7 @@ class OFC(Game):
         """
         # Symmetries in this context only occur by mapping suits to other suits. 
         # For example the state [Ah Kh Qh Jh Ts] is the same as [Ad Kd Qd Jd Tc].
-        
+        board = np.array(board)
         board = list(board)
         # separate into suits            
         S = [board[i] for i in range(0,13)]
@@ -250,6 +259,8 @@ class OFC(Game):
             for i in range(52):
                 deck[i]=board[i]
             deck = np.array(deck)
+            deck = deck[np.newaxis,:]
+
         # tuple with policy
         for el in l:
             el = (el,pi)
