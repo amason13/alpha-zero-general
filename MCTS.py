@@ -108,6 +108,8 @@ class MCTS():
                     u = self.Qsa[(s,a)] + self.args.cpuct*self.Ps[s][a]*math.sqrt(self.Ns[s])/(1+self.Nsa[(s,a)])
                     print(u)
                 else:
+                    print(self.Ps[s][a])
+                    print(math.sqrt(self.Ns[s] + EPS))
                     u = self.args.cpuct*self.Ps[s][a]*math.sqrt(self.Ns[s] + EPS)     # Q = 0 ?
                     print('U:', u, np.shape(u))
                 if u > cur_best:
