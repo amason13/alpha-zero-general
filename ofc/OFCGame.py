@@ -269,6 +269,7 @@ class OFC(Game):
         return l
 
     def stringRepresentation(self, board):
+        board = board[0]
         return board.tostring()
 
     def display(self, player):
