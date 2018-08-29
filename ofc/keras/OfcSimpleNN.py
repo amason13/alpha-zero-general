@@ -25,4 +25,4 @@ class SimpleNN():
 
         self.model = Model(inputs=self.input_boards, outputs=[self.pi, self.v])
                 
-        self.model.compile(loss=['mean_squared_error'], optimizer=SGD(args.lr,momentum=0.9,nesterov=True))
+        self.model.compile(loss=['categorical_crossentropy','mean_squared_error'], optimizer=SGD(args.lr,momentum=0.9,nesterov=True))
