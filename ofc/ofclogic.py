@@ -1,14 +1,8 @@
-# -*- coding: utf-8 -*-
-
-''' 
-Author: amason13
-Player class for pofc
-'''
-
 from treys import Card, Evaluator
 import itertools
 import numpy as np
 from ofc import methods
+from copy import deepcopy
 
 evaluator = Evaluator()
 
@@ -350,9 +344,9 @@ class playerHand:
                     
             
             # calculate sum of individual score
-            s = bs + ms +ts
+            s = bs + ms + ts
             
-            # double score if player wins all three hands (as per POFC scoring rules)
+            # double score if player wins all three hands (as per OFC scoring rules)
             if s % 3 == 0:
                 s = 2*s
             
@@ -395,18 +389,7 @@ class playerHand:
         for card in opponent.bottom_hand:
             board[full_deck.index(card)] = -3
     
-        for card in opponent.discards:
-            board[full_deck.index(card)] = -4
-        
-    
         return np.array(board)
-        
- from treys import Evaluator, Card
-from copy import deepcopy
-import numpy as np
-
-
-evaluator = Evaluator()
 
 def split_by_rank(cards):
     
@@ -522,116 +505,9 @@ def top_royalties(cards):
         top_roy += Card.get_rank_int(ranked_cards[0][0])-3
     return top_roy
     
-    
-def score_hands(hand1,hand2):
-    
-    top_rank1 = evaluator.evaluate(hand1.top_hand,[])
-    mid_rank1 = evaluator.evaluate(hand1.middle_hand,[])
-    bot_rank1 = evaluator.evaluate(hand1.bottom_hand,[])
-    
-    top_rank2 = evaluator.evaluate(hand2.top_hand,[])
-    mid_rank2 = evaluator.evaluate(hand2.middle_hand,[])
-    bot_rank2 = evaluator.evaluate(hand2.bottom_hand,[])
-    
-    # if both players foul
-    if (not bot_rank1<=mid_rank1<top_rank1) and (not bot_rank2<=mid_rank2<=top_rank2):
-        return (0,0)
-        
-    # if player 1 only fouls
-    elif not bot_rank1<=mid_rank1<=top_rank1:
-        r = hand2.get_royalties()
-        return (-6-r,6+r)
-    
-    # if player 2 only fouls
-    elif not bot_rank2<=mid_rank2<=top_rank2:
-        r = hand1.get_royalties()
-        return (6+r,-6-r)
-    
-    # if neither player fouls    
-    else:
-        r1 = hand1.get_royalties()
-        r2 = hand2.get_royalties()
-        
-        # bottom hand
-        if bot_rank1<bot_rank2:
-            bs = 1
-        elif bot_rank1 == bot_rank2:
-            bs = 0
-        else: bs = -1
-        # middle hand
-        if mid_rank1<mid_rank2:
-            ms = 1
-        elif mid_rank1 == mid_rank2:
-            ms = 0
-        else: ms = -1
-        # top hand
-        if top_rank1<top_rank2:
-            ts = 1
-        elif top_rank1>top_rank2:
-            ts = -1
-            
-        # the folowing should take care of the 3-to-5 card mapping being many-to-one
-        else:
-            dummy_top1 = [hand1.top_hand[0],hand1.top_hand[1],hand1.top_hand[2]]
-            dummy_top2 = [hand2.top_hand[0],hand2.top_hand[1],hand2.top_hand[2]]
-            ranked1 = split_by_rank(dummy_top1)
-            ranked2 = split_by_rank(dummy_top2)
-            
-            if len(ranked1[0]) == 2: # for pairs
-                if Card.get_rank_int(ranked1[1][0]) == Card.get_rank_int(ranked2[1][0]):
-                    ts = 0
-                elif Card.get_rank_int(ranked1[1][0]) > Card.get_rank_int(ranked2[1][0]):
-                    ts = 1
-                else:
-                    ts = -1
-                    
-            else:   # for high cards
-                if Card.get_rank_int(ranked1[0][0]) > Card.get_rank_int(ranked2[0][0]):
-                    ts = 1
-                elif Card.get_rank_int(ranked1[0][0]) < Card.get_rank_int(ranked2[0][0]):
-                    ts = -1
-                else:
-                    if Card.get_rank_int(ranked1[1][0]) > Card.get_rank_int(ranked2[1][0]):
-                        ts = 1
-                    elif Card.get_rank_int(ranked1[1][0]) < Card.get_rank_int(ranked2[1][0]):
-                        ts = -1
-                    else:
-                        if Card.get_rank_int(ranked1[2][0]) > Card.get_rank_int(ranked2[2][0]):
-                            ts = 1
-                        elif Card.get_rank_int(ranked1[2][0]) < Card.get_rank_int(ranked2[2][0]):
-                            ts = -1
-                        else:
-                            ts = 0
-                
-        
-        # calculate sum of individual score
-        s = bs + ms +ts
-        
-        # double score if player wins all three hands (as per POFC scoring rules)
-        if s % 3 == 0:
-            s = 2*s
-        
-        # calculate hand1 score by adding difference of royalties
-        s = s + r1 - r2
-        
-        return s
-
-    
-  
 def try_remove(myelement, mylist):
     if myelement in mylist:
         mylist.remove(myelement)
-
-        
-def normalise_rank_5(rank):
-    nor = (7462-rank)/7462
-    return nor
-
-def normalise_rank_3(rank):
-    nor = (7462-rank)/5787
-    return nor  
-
-
 
 def estimate_score(hand1, hand2, deck):
     # number of iterations
@@ -664,7 +540,7 @@ def estimate_score(hand1, hand2, deck):
         while len(dummyp2.bottom_hand)<5:
             dummyp2.bottom_hand.append(dummy.draw(1))
                    
-        s = score_hands(dummyp1,dummyp2)
+        s = dummyp1.score(dummyp2)
         score += s
         
     #average scores and ranks
@@ -706,14 +582,7 @@ def hands_to_board(hand1,hand2):
         board[full_deck.index(card)] = -2
         
     for card in hand2.bottom_hand:
-        board[full_deck.index(card)] = -3
-
-#    for card in hand2.discards:
-#        board[full_deck.index(card)] = -4
-
-#    for card in hand2.dealt_cards:
-#        board[full_deck.index(card)] = -5
-    
+        board[full_deck.index(card)] = -3    
 
     return np.array(board)
 
@@ -746,6 +615,3 @@ def board_to_hands(board,hand1,hand2):
         BOARD_TO_HAND[board[i]].append(full_deck[i])
         
     board = np.array(board)
-    
-    
-
