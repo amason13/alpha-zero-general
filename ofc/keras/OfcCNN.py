@@ -15,7 +15,7 @@ class CNN():
         self.args = args
 
         # Neural Net
-        self.input_boards = Input(shape=(52, 1))    
+        self.input_boards = Input(shape=(1,))    
 
         x_image = Reshape((13, 4, 1))(self.input_boards)                # batch_size  x board_x x board_y x 1
         h_conv1 = Activation('relu')(BatchNormalization(axis=3)(Conv2D(args.num_channels, 3, padding='same', use_bias=False)(x_image)))         # batch_size  x board_x x board_y x num_channels
