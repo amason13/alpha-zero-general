@@ -154,7 +154,7 @@ class OFC(Game):
         
         # determine next board
         nextboard = methods.players_to_board(self.opponent(player),player)
-        return (nextboard, self.opponent(player))
+        return (nextboard, -player)
         
         
 
