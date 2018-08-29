@@ -1,5 +1,5 @@
 import numpy as np
-import OFCLogic
+from .OFCLogic import *
 
 class RandomPlayer():
     def __init__(self, game):
