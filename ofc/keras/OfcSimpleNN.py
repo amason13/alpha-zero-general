@@ -15,7 +15,7 @@ class SimpleNN():
         self.args = args
 
         # Neural Net
-        self.input_boards = Input(shape=(13,4))
+        self.input_boards = Input(shape=(1,))
         
         x = Dense(64, activation='relu')(self.input_boards)
         x = Dense(64, activation='relu')(x)
