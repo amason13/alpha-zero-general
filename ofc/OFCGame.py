@@ -57,7 +57,7 @@ class OFC(Game):
             self.ph2.set_fantasy()
             
         # get initial board for each deal - (represented by a 52x1 numpy array) 
-        board = methods.hands_to_board(self.ph1,self.ph2)
+        board = hands_to_board(self.ph1,self.ph2)
         return board
 
     def getBoardSize(self):
@@ -153,7 +153,7 @@ class OFC(Game):
             player_hand.dealt_cards=self.deck.draw(self.n)
         
         # determine next board
-        nextboard = methods.players_to_board(self.opponent(player),player)
+        nextboard = players_to_board(self.opponent(player),player)
         return (nextboard, -player)
         
         
@@ -174,7 +174,7 @@ class OFC(Game):
         player_hand = self.PLAYERS_HAND_DICT[player]
         
         # convert board to player hands
-        methods.board_to_hands(player_hand,self.opponent_hand(player_hand))
+        board_to_hands(player_hand,self.opponent_hand(player_hand))
         
         # get available actions
         return player_hand.get_available_actions()
@@ -195,7 +195,7 @@ class OFC(Game):
         
         # if players hand and opponents hands are full, score player, else return False
         if (player_hand.is_full==1) and (op_hand.is_full==1):
-            score = methods.score_hands(player_hand,self.opponent_hand(player_hand))
+            score = score_hands(player_hand,self.opponent_hand(player_hand))
             
             # get player hands ready for next hand - updating fantasy variable
             player_hand.next_hand()
@@ -214,7 +214,7 @@ class OFC(Game):
         player_hand = self.PLAYERS_HAND_DICT[player]
         # canonical form of board is not as simple as *-1 like in other games, 
         # due to discards which can only be seen by current player.
-        can_board = methods.hands_to_board(player_hand,self.opponent_hand(player_hand))
+        can_board = hands_to_board(player_hand,self.opponent_hand(player_hand))
         return can_board
     
     
