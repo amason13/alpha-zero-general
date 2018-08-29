@@ -13,6 +13,7 @@ class OthelloGame(Game):
     def getInitBoard(self):
         # return initial board (numpy board)
         b = Board(self.n)
+        print(np.array(b.pieces)
         return np.array(b.pieces)
 
     def getBoardSize(self):
