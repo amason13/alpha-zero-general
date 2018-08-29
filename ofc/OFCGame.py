@@ -24,11 +24,7 @@ class OFC(Game):
         self.PLAYERS_HAND_DICT = {1:self.ph1,-1:self.ph2}
         
         
-    def opponent_hand(self, player):
-        
-        # map 1 or -1 to playerHand object
-        player_hand = self.PLAYERS_HAND_DICT[player]
-        
+    def opponent_hand(self, player_hand):
         # return opponent's playerHand object
         if player_hand == self.ph1:
             return self.ph2
