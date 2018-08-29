@@ -14,6 +14,7 @@ Date: 29 Aug, 2018.
 class OFC(Game):
     # ph1, ph2 are playerHand objects, n = 1,2,3 for different variants of ofc.
     def __init__(self,ph1,ph2,n=1):
+        self.round = 1
         # initiate playerHand obvjects
         self.ph1 = ph1
         self.ph2 = ph2
@@ -64,7 +65,7 @@ class OFC(Game):
         # board array always same size
         return (52,1)
 
-    def getActionSize(self,player):
+    def getActionSize(self):
         """
         Returns:
             actionSize: number of all possible actions
@@ -73,10 +74,10 @@ class OFC(Game):
         player_hand = self.PLAYERS_HAND_DICT[player]
         
         # if the first round where 5 cards are dealt and must be placed (assuming not in fantasy)
-        if len(player_hand.dealt_cards) == 5:
+        if self.round <= 2:
             return 232
         else: # for self.n = 1 the regular variant - more logic needs to be added here for n=2,3..
-            return np.count_nonzero(player_hand.get_available_actions()==1) 
+            return 3
 
             
     def getNextState(self, board, player, action):
@@ -147,14 +148,12 @@ class OFC(Game):
         
             # draw the next n cards for the next round
             player_hand.dealt_cards=self.deck.draw(self.n)
-        
+            
+        self.round += 1
         # determine next board
         nextboard = players_to_board(self.opponent(player),player)
         return (nextboard, -player)
         
-        
-
-     
         
     def getValidMoves(self, board, player):
         """
@@ -256,8 +255,12 @@ class OFC(Game):
     def stringRepresentation(self, board):
         return board.tostring()
 
-    def display(self,player_hand):
-        print('PLAYER1:')
+    def display(self, player):
+        # maps 1 or -1 to playerHand object
+        player_hand = self.PLAYERS_HAND_DICT[player]
+        
+        print('Player: ', player)
         player_hand.show()
-        print('PLAYER2:')
+        
+        print('Player: ', -player)
         self.opponent_hand(player_hand).show()
