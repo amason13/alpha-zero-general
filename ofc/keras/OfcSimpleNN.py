@@ -23,6 +23,6 @@ class SimpleNN():
         self.pi = Dense(self.action_size, activation='softmax', name='pi')
         self.v = Dense(1, activation='tanh', name='v')
 
-        self.model = Model([inputs=self.input_boards, outputs=[self.pi, self.v])
+        self.model = Model(inputs=self.input_boards, outputs=[self.pi, self.v])
                 
         self.model.compile(loss=['mean_squared_error'], optimizer=SGD(args.lr,momentum=0.9,nesterov=True))
