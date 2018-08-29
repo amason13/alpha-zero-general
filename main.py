@@ -1,6 +1,6 @@
 from Coach import Coach
 from ofc.OFCGame import OFC as Game
-from ofc.pytorch.NNet import NNetWrapper as nn
+from ofc.keras.NNet import NNetWrapper as nn
 from utils import *
 from ofc.OFCLogic import playerHand
 
