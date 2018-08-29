@@ -610,7 +610,7 @@ def board_to_hands(board,hand1,hand2):
                      -3:hand2.bottom_hand,
                      -4:hand2.discards,
                      -5:hand2.dealt_cards}
-    
+    print(board)
     for i in range(52):
         BOARD_TO_HAND[board[i]].append(full_deck[i])
         
