@@ -592,11 +592,8 @@ def hands_to_board(hand1,hand2):
 def board_to_hands(board,hand1,hand2):
     hand1.reset()
     hand2.reset()
-    print('b1: ',board)
     board = board.reshape(1,52)
-    print('b2: ',board)
-    board = list(board[0])
-    print('b3: ',board)
+    board = board[0]
     unseen = []
     full_deck = []
 
