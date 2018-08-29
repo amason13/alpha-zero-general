@@ -140,15 +140,16 @@ class OFC(Game):
             if len(player_hand.dealt_cards) == 1:
                 ACTION_DICT_1[action].append(player_hand.dealt_cards.pop(0))
             else: 
-                for i in range(len(player_hand.dealt_cards)):
-                    CARDS_DEALT_TO_DICT_MAP[len(player_hand.dealt_cards)][action].append(player_hand.dealt_cards.pop(0))
+                for i in range(len(player.dealt_cards):
+                    CARDS_DEALT_TO_DICT_MAP[len(player_hand.dealt_cards)][action][i].append(player_hand.dealt_cards[i])
+            player.dealt_cards = []
         
             # draw the next n cards for the next round
             player_hand.dealt_cards=self.deck.draw(self.n)
             
         self.round += 1
         # determine next board
-        nextboard = players_to_board(self.opponent(player),player)
+        nextboard = hands_to_board(self.PLAYERS_HAND_DICT[-player],self.PLAYERS_HAND_DICT[player])
         return (nextboard, -player)
         
         
