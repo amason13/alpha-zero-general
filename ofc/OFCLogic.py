@@ -594,7 +594,8 @@ def board_to_hands(board,hand1,hand2):
     hand1.reset()
     hand2.reset()
     board = board[0]
-    board = list(board)
+    print(board)
+    #board = list(board)
     unseen = []
     full_deck = []
 
@@ -615,4 +616,5 @@ def board_to_hands(board,hand1,hand2):
                      -5:hand2.dealt_cards}
     for i in range(52):
         BOARD_TO_HAND[board[i]].append(full_deck[i])
+        
  
