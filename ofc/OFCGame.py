@@ -64,7 +64,7 @@ class OFC(Game):
             (x,y): a tuple of board dimensions
         """
         # board array always same size
-        return (3,13)
+        return (4,13)
 
     def getActionSize(self):
         """
