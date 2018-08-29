@@ -16,10 +16,10 @@ class SimpleNN():
 
         # Neural Net
         self.input_boards = Input(shape=(self.board_x, self.board_y))
-        #x = Reshape((self.board_x, self.board_y, 1))(self.input_boards) 
+        x = Reshape((self.board_x, self.board_y, 1))(self.input_boards) 
         #self.input_boards = Input(shape=(1,))
         
-        x = Dense(64, activation='relu')(self.input_boards)
+        x = Dense(64, activation='relu')(x)
         x = Dense(64, activation='relu')(x)
         x = Dense(64, activation='relu')(x)
 
