@@ -55,8 +55,6 @@ class OFC(Game):
             
         # get initial board for each deal - (represented by a 52x1 numpy array) 
         board = hands_to_board(self.ph1,self.ph2)
-        #board = np.array(board)
-        #board = board[np.newaxis,:]
         return board
         
 
@@ -66,7 +64,7 @@ class OFC(Game):
             (x,y): a tuple of board dimensions
         """
         # board array always same size
-        return (1,52)
+        return (3,13)
 
     def getActionSize(self):
         """
@@ -98,8 +96,7 @@ class OFC(Game):
             pass
         else:
         
-            board = board[0]
-            board = np.array(board)
+            board = board.reshape(1,52)
             T = player_hand.top_hand
             M = player_hand.middle_hand
             B = player_hand.bottom_hand
@@ -154,8 +151,6 @@ class OFC(Game):
         self.round += 1
         # determine next board
         nextboard = hands_to_board(self.PLAYERS_HAND_DICT[-player],self.PLAYERS_HAND_DICT[player])
-        nextboard = np.array(nextboard)
-        nextboard = nextboard[np.newaxis,:]
         return (nextboard, -player)
         
         
@@ -172,8 +167,7 @@ class OFC(Game):
         # map 1 or -1 to player hand
         player_hand = self.PLAYERS_HAND_DICT[player]
         opponent_hand = self.PLAYERS_HAND_DICT[-player]
-        #board = board[0]
-        #board = np.array(board)
+        
         # convert board to player hands
         board_to_hands(board,player_hand,opponent_hand)
         
@@ -191,8 +185,6 @@ class OFC(Game):
                Score if game has ended (could be 0).
                
         """
-        board = board[0]
-        board = np.array(board)
         player_hand = self.PLAYERS_HAND_DICT[player]
         op_hand = self.opponent_hand(player_hand)
         
@@ -218,8 +210,6 @@ class OFC(Game):
         # canonical form of board is not as simple as *-1 like in other games, 
         # due to discards which can only be seen by current player.
         can_board = hands_to_board(player_hand,self.opponent_hand(player_hand))
-        #can_board = np.array(can_board)
-        #can_board = can_board[np.newaxis,:]
 
         return can_board
     
@@ -236,8 +226,7 @@ class OFC(Game):
         """
         # Symmetries in this context only occur by mapping suits to other suits. 
         # For example the state [Ah Kh Qh Jh Ts] is the same as [Ad Kd Qd Jd Tc].
-        board = board[0]
-        board = np.array(board)
+        board = board.reshape(1,52)
         board = list(board)
         # separate into suits            
         S = [board[i] for i in range(0,13)]
