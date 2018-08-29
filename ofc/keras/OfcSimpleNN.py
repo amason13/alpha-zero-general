@@ -20,8 +20,8 @@ class SimpleNN():
         self.hidden1 = Dense(64, activation='relu')(self.input_boards)
         self.hidden2 = Dense(64, activation='relu')(self.hidden1)
 
-        self.pi = Dense(self.action_size, activation='softmax', name='pi')
-        self.v = Dense(1, activation='tanh', name='v')
+        self.pi = Dense(self.action_size, activation='softmax', name='pi')(self.hidden2)
+        self.v = Dense(1, activation='tanh', name='v')(self.hidden2)
 
         self.model = Model(inputs=self.input_boards, outputs=[self.pi, self.v])
                 
