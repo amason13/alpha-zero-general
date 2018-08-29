@@ -3,7 +3,7 @@
 from Game import Game
 import numpy as np
 import itertools
-from OFCLogic import *
+from .OFCLogic import *
 from treys import Deck
 
 """
