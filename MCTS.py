@@ -66,7 +66,8 @@ class MCTS():
         """
 
         s = self.game.stringRepresentation(canonicalBoard)
-
+        print('cb:',canonicalBoard)
+        
         if s not in self.Es:
             self.Es[s] = self.game.getGameEnded(canonicalBoard, 1)
         if self.Es[s]!=0:
