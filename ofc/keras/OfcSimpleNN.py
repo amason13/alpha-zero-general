@@ -16,7 +16,7 @@ class SimpleNN():
 
         # Neural Net
         self.input_boards = Input(shape=(self.board_x, self.board_y))
-        x_image = Reshape((self.board_x, self.board_y, 1))(self.input_boards)
+        self.x_image = Reshape((self.board_x, self.board_y, 1))(self.input_boards)
         self.hidden1 = Dense(64, activation='relu')(x_image)
         self.hidden2 = Dense(64, activation='relu')(self.hidden1)
 
