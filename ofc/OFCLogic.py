@@ -387,8 +387,10 @@ class playerHand:
             
         for card in opponent.bottom_hand:
             board[full_deck.index(card)] = -3
-    
-        return np.array(board)
+        
+        board = np.array(board)
+        board = board[np.newaxis,:]
+        return board
 
 def split_by_rank(cards):
     
@@ -583,14 +585,14 @@ def hands_to_board(hand1,hand2):
     for card in hand2.bottom_hand:
         board[full_deck.index(card)] = -3    
 
-    return np.array(board)
-
+    board = np.array(board)
+    board = board[np.newaxis,:]
+    
 
 
 def board_to_hands(board,hand1,hand2):
     hand1.reset()
     hand2.reset()
-    #board = np.array(board)
     board = board[0]
     board = list(board)
     unseen = []
@@ -611,10 +613,6 @@ def board_to_hands(board,hand1,hand2):
                      -3:hand2.bottom_hand,
                      -4:hand2.discards,
                      -5:hand2.dealt_cards}
-    print(board)
     for i in range(52):
         BOARD_TO_HAND[board[i]].append(full_deck[i])
-        
-    board = np.array(board)
-    board = board[np.newaxis,:]
-
+ 
