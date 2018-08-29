@@ -1,7 +1,6 @@
 from treys import Card, Evaluator
 import itertools
 import numpy as np
-from ofc import methods
 from copy import deepcopy
 
 evaluator = Evaluator()
@@ -53,7 +52,7 @@ class playerHand:
             if self.is_misset == 1:    
                 return 0
             else:
-                if methods.top_royalties(self.top_hand) > 6:
+                if top_royalties(self.top_hand) > 6:
                     return 1  
                 
         # if previously in fantasy land        
@@ -88,7 +87,7 @@ class playerHand:
                 9: 0   # high card
             }
             
-            if (methods.top_royalties(self.top_hand)>9) or (MIDDLE_RANK_TO_ROYALTY[mid]>9) or (BOTTOM_RANK_TO_ROYALTY[bot]>9):
+            if (top_royalties(self.top_hand)>9) or (MIDDLE_RANK_TO_ROYALTY[mid]>9) or (BOTTOM_RANK_TO_ROYALTY[bot]>9):
                 return 1
             else:
                 return 0
@@ -133,11 +132,11 @@ class playerHand:
         if not bot_rank<=mid_rank<=top_rank: 
             royalties = 0
         elif mid_rank == 1:
-            royalties += 75 + methods.top_royalties(self.top_hand)
+            royalties += 75 + top_royalties(self.top_hand)
         elif bot_rank ==1:
-            royalties += 50 +MIDDLE_RANK_TO_ROYALTY[mid] + methods.top_royalties(self.top_hand)
+            royalties += 50 +MIDDLE_RANK_TO_ROYALTY[mid] + top_royalties(self.top_hand)
         else:
-            royalties += MIDDLE_RANK_TO_ROYALTY[mid] + BOTTOM_RANK_TO_ROYALTY[bot] + methods.top_royalties(self.top_hand)
+            royalties += MIDDLE_RANK_TO_ROYALTY[mid] + BOTTOM_RANK_TO_ROYALTY[bot] + top_royalties(self.top_hand)
        
         return royalties
         
@@ -313,8 +312,8 @@ class playerHand:
             else:
                 dummy_top1 = [self.top_hand[0],self.top_hand[1],self.top_hand[2]]
                 dummy_top2 = [opponent.top_hand[0],opponent.top_hand[1],opponent.top_hand[2]]
-                ranked1 = methods.split_by_rank(dummy_top1)
-                ranked2 = methods.split_by_rank(dummy_top2)
+                ranked1 = split_by_rank(dummy_top1)
+                ranked2 = split_by_rank(dummy_top2)
                 
                 if len(ranked1[0]) == 2: # for pairs
                     if Card.get_rank_int(ranked1[1][0]) == Card.get_rank_int(ranked2[1][0]):
