@@ -23,7 +23,6 @@ class MCTS():
         """
         This function performs numMCTSSims simulations of MCTS starting from
         canonicalBoard.
-
         Returns:
             probs: a policy vector where the probability of the ith action is
                    proportional to Nsa[(s,a)]**(1./temp)
@@ -50,23 +49,20 @@ class MCTS():
         This function performs one iteration of MCTS. It is recursively called
         till a leaf node is found. The action chosen at each node is one that
         has the maximum upper confidence bound as in the paper.
-
         Once a leaf node is found, the neural network is called to return an
         initial policy P and a value v for the state. This value is propogated
         up the search path. In case the leaf node is a terminal state, the
         outcome is propogated up the search path. The values of Ns, Nsa, Qsa are
         updated.
-
         NOTE: the return values are the negative of the value of the current
         state. This is done since v is in [-1,1] and if v is the value of a
         state for the current player, then its value is -v for the other player.
-
         Returns:
             v: the negative of the value of the current canonicalBoard
         """
 
         s = self.game.stringRepresentation(canonicalBoard)
-        
+
         if s not in self.Es:
             self.Es[s] = self.game.getGameEnded(canonicalBoard, 1)
         if self.Es[s]!=0:
@@ -105,9 +101,11 @@ class MCTS():
                     u = self.Qsa[(s,a)] + self.args.cpuct*self.Ps[s][a]*math.sqrt(self.Ns[s])/(1+self.Nsa[(s,a)])
                 else:
                     u = self.args.cpuct*self.Ps[s][a]*math.sqrt(self.Ns[s] + EPS)     # Q = 0 ?
+
                 if u > cur_best:
                     cur_best = u
                     best_act = a
+
         a = best_act
         next_s, next_player = self.game.getNextState(canonicalBoard, 1, a)
         next_s = self.game.getCanonicalForm(next_s, next_player)
