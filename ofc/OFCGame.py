@@ -154,23 +154,8 @@ class OFC(Game):
 
         
     def getCanonicalForm(self, board, player):
-
-        print('getcanform')
-
-        player_hand = self.PLAYERS_HAND_DICT[player]
-        op_hand = self.PLAYERS_HAND_DICT[-player]
-
-        can_board = hands_to_board(player_hand,op_hand)
-        '''
-        # maps 1 or -1 to playerHand object
-        player_hand = self.PLAYERS_HAND_DICT[player]
-        # canonical form of board is not as simple as *-1 like in other games, 
-        # due to discards which can only be seen by current player.
-        can_board = hands_to_board(player_hand,self.opponent_hand(player_hand))
-        can_board = np.array(can_board)
-        '''
-        print(can_board,player)
-        return can_board
+       
+        return board*player
     
     
     def getSymmetries(self, board, pi):
