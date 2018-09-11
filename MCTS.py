@@ -20,7 +20,6 @@ class MCTS():
         self.Vs = {}        # stores game.getValidMoves for board s
 
     def getActionProb(self, canonicalBoard, temp=1):
-        print('getActionProb')
         """
         This function performs numMCTSSims simulations of MCTS starting from
         canonicalBoard.
@@ -47,7 +46,6 @@ class MCTS():
 
 
     def search(self, canonicalBoard):
-        print('search')
         """
         This function performs one iteration of MCTS. It is recursively called
         till a leaf node is found. The action chosen at each node is one that
@@ -70,22 +68,16 @@ class MCTS():
         s = self.game.stringRepresentation(canonicalBoard)
         
         if s not in self.Es:
-            print('one')
             self.Es[s] = self.game.getGameEnded(canonicalBoard, 1)
         if self.Es[s]!=0:
-            print('two')
             # terminal node
             return -self.Es[s]
 
         if s not in self.Ps:
-            print('three')
             # leaf node
             self.Ps[s], v = self.nnet.predict(canonicalBoard)
-            #print('Ps-s: ',self.Ps[s],np.shape(self.Ps[s]))
             valids = self.game.getValidMoves(canonicalBoard, 1)
-            #print('valids: ',valids)
             self.Ps[s] = self.Ps[s]*valids      # masking invalid moves
-            print('Ps-s: ',self.Ps[s],np.shape(self.Ps[s]))
             sum_Ps_s = np.sum(self.Ps[s])
             if sum_Ps_s > 0:
                 self.Ps[s] /= sum_Ps_s    # renormalize
@@ -116,7 +108,6 @@ class MCTS():
                 if u > cur_best:
                     cur_best = u
                     best_act = a
-        print('four')
         a = best_act
         next_s, next_player = self.game.getNextState(canonicalBoard, 1, a)
         next_s = self.game.getCanonicalForm(next_s, next_player)
