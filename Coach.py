@@ -23,6 +23,7 @@ class Coach():
         self.skipFirstSelfPlay = False # can be overriden in loadTrainExamples()
 
     def executeEpisode(self):
+        print('executeEp')
         """
         This function executes one episode of self-play, starting with player 1.
         As the game is played, each turn is added as a training example to
@@ -58,10 +59,11 @@ class Coach():
 
             r = self.game.getGameEnded(board, self.curPlayer)
 
-            if r!=0:
+            if r!=False:
                 return [(x[0],x[2],r*((-1)**(x[1]!=self.curPlayer))) for x in trainExamples]
 
     def learn(self):
+        print('learn')
         """
         Performs numIters iterations with numEps episodes of self-play in each
         iteration. After every iteration, it retrains neural network with
