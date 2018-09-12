@@ -142,7 +142,73 @@ class playerHand:
         
 
 
+    def execute_move(self, action):
+            """
+            Input:
+                board: current board
+                player: current player (1 or -1)
+                action: action taken by current player - integer corresponding to a given action in dictionary
+            Returns:
+                nextBoard: board after applying action
+                nextPlayer: player who plays in the next turn (should be -player)
+            """
+            # if in fantasy
+            if self.in_fantasy == 1:
+                pass
+            else:
 
+                T = self.top_hand
+                M = self.middle_hand
+                B = self.bottom_hand
+                D = self.discards
+
+
+                # dictionaries mapping index labels of valid move vectors, to the combination of hands where card in playerHand.dealt_cards should be allocated
+                ACTION_DICT_1 = {0:T, 1:M, 2:B}
+
+                ACTION_DICT_2 = {0:(T,T),1:(T,M),2:(T,B),3:(M,T),4:(M,M),5:(M,B),6:(B,T),7:(B,M),8:(B,B)}
+
+                ACTION_DICT_3 = {0:(T,T,D),1:(T,D,T),2:(D,T,T),
+                                 3:(T,M,D),4:(T,D,M),5:(D,T,M),
+                                 6:(T,B,D),7:(T,D,B),8:(D,T,B),
+                                 9:(M,T,D),10:(M,D,T),11:(D,M,T),
+                                 12:(M,M,D),13:(M,D,M),14:(D,M,M),
+                                 15:(M,B,D),16:(M,D,B),17:(D,M,B),
+                                 18:(B,T,D),19:(B,D,T),20:(D,B,T),
+                                 21:(B,M,D),22:(B,D,M),23:(D,B,M),
+                                 24:(B,B,D),25:(B,D,B),26:(D,B,B)}
+
+                five_card_combos = [(T, T, T, M, M),(T, T, T, M, B),(T, T, T, B, M),(T, T, T, B, B),(T, T, M, T, M),(T, T, M, T, B),(T, T, M, M, T),(T, T, M, M, M),
+                                    (T, T, M, M, B),(T, T, M, B, T),(T, T, M, B, M),(T, T, M, B, B),(T, T, B, T, M),(T, T, B, T, B),(T, T, B, M, T),(T, T, B, M, M),(T, T, B, M, B),(T, T, B, B, T),(T, T, B, B, M),(T, T, B, B, B),(T, M, T, T, M),(T, M, T, T, B),(T, M, T, M, T),(T, M, T, M, M),
+                                    (T, M, T, M, B),(T, M, T, B, T),(T, M, T, B, M),(T, M, T, B, B),(T, M, M, T, T),(T, M, M, T, M),(T, M, M, T, B),(T, M, M, M, T),(T, M, M, M, M),(T, M, M, M, B),(T, M, M, B, T),(T, M, M, B, M),(T, M, M, B, B),(T, M, B, T, T),(T, M, B, T, M),(T, M, B, T, B),
+                                    (T, M, B, M, T),(T, M, B, M, M),(T, M, B, M, B),(T, M, B, B, T),(T, M, B, B, M),(T, M, B, B, B),(T, B, T, T, M),(T, B, T, T, B),(T, B, T, M, T),(T, B, T, M, M),(T, B, T, M, B),(T, B, T, B, T),(T, B, T, B, M),(T, B, T, B, B),(T, B, M, T, T),(T, B, M, T, M),
+                                    (T, B, M, T, B),(T, B, M, M, T),(T, B, M, M, M),(T, B, M, M, B),(T, B, M, B, T),(T, B, M, B, M),(T, B, M, B, B),(T, B, B, T, T),(T, B, B, T, M),(T, B, B, T, B),(T, B, B, M, T),(T, B, B, M, M),(T, B, B, M, B),(T, B, B, B, T),(T, B, B, B, M),(T, B, B, B, B),
+                                    (M, T, T, T, M),(M, T, T, T, B),(M, T, T, M, T),(M, T, T, M, M),(M, T, T, M, B),(M, T, T, B, T),(M, T, T, B, M),(M, T, T, B, B),(M, T, M, T, T),(M, T, M, T, M),(M, T, M, T, B),(M, T, M, M, T),(M, T, M, M, M),(M, T, M, M, B),(M, T, M, B, T),(M, T, M, B, M),
+                                    (M, T, M, B, B),(M, T, B, T, T),(M, T, B, T, M),(M, T, B, T, B),(M, T, B, M, T),(M, T, B, M, M),(M, T, B, M, B),(M, T, B, B, T),(M, T, B, B, M),(M, T, B, B, B),(M, M, T, T, T),(M, M, T, T, M),(M, M, T, T, B),(M, M, T, M, T),(M, M, T, M, M),(M, M, T, M, B),
+                                    (M, M, T, B, T),(M, M, T, B, M),(M, M, T, B, B),(M, M, M, T, T),(M, M, M, T, M),(M, M, M, T, B),(M, M, M, M, T),(M, M, M, M, M),(M, M, M, M, B),(M, M, M, B, T),(M, M, M, B, M),(M, M, M, B, B),(M, M, B, T, T),(M, M, B, T, M),(M, M, B, T, B),(M, M, B, M, T),
+                                    (M, M, B, M, M),(M, M, B, M, B),(M, M, B, B, T),(M, M, B, B, M),(M, M, B, B, B),(M, B, T, T, T),(M, B, T, T, M),(M, B, T, T, B),(M, B, T, M, T),(M, B, T, M, M),(M, B, T, M, B),(M, B, T, B, T),(M, B, T, B, M),(M, B, T, B, B),(M, B, M, T, T),(M, B, M, T, M),
+                                    (M, B, M, T, B),(M, B, M, M, T),(M, B, M, M, M),(M, B, M, M, B),(M, B, M, B, T),(M, B, M, B, M),(M, B, M, B, B),(M, B, B, T, T),(M, B, B, T, M),(M, B, B, T, B),(M, B, B, M, T),(M, B, B, M, M),(M, B, B, M, B),(M, B, B, B, T),(M, B, B, B, M),(M, B, B, B, B),
+                                    (B, T, T, T, M),(B, T, T, T, B),(B, T, T, M, T),(B, T, T, M, M),(B, T, T, M, B),(B, T, T, B, T),(B, T, T, B, M),(B, T, T, B, B),(B, T, M, T, T),(B, T, M, T, M),(B, T, M, T, B),(B, T, M, M, T),(B, T, M, M, M),(B, T, M, M, B),(B, T, M, B, T),(B, T, M, B, M),
+                                    (B, T, M, B, B),(B, T, B, T, T),(B, T, B, T, M),(B, T, B, T, B),(B, T, B, M, T),(B, T, B, M, M),(B, T, B, M, B),(B, T, B, B, T),(B, T, B, B, M),(B, T, B, B, B),(B, M, T, T, T),(B, M, T, T, M),(B, M, T, T, B),(B, M, T, M, T),(B, M, T, M, M),(B, M, T, M, B),
+                                    (B, M, T, B, T),(B, M, T, B, M),(B, M, T, B, B),(B, M, M, T, T),(B, M, M, T, M),(B, M, M, T, B),(B, M, M, M, T),(B, M, M, M, M),(B, M, M, M, B),(B, M, M, B, T),(B, M, M, B, M),(B, M, M, B, B),(B, M, B, T, T),(B, M, B, T, M),(B, M, B, T, B),(B, M, B, M, T),
+                                    (B, M, B, M, M),(B, M, B, M, B),(B, M, B, B, T),(B, M, B, B, M),(B, M, B, B, B),(B, B, T, T, T),(B, B, T, T, M),(B, B, T, T, B),(B, B, T, M, T),(B, B, T, M, M),(B, B, T, M, B),(B, B, T, B, T),(B, B, T, B, M),(B, B, T, B, B),(B, B, M, T, T),(B, B, M, T, M),
+                                    (B, B, M, T, B),(B, B, M, M, T),(B, B, M, M, M),(B, B, M, M, B),(B, B, M, B, T),(B, B, M, B, M),(B, B, M, B, B),(B, B, B, T, T),(B, B, B, T, M),(B, B, B, T, B),(B, B, B, M, T),(B, B, B, M, M),(B, B, B, M, B),(B, B, B, B, T),(B, B, B, B, M),(B, B, B, B, B)]
+                ACTION_DICT_5 = dict(zip(range(232),five_card_combos))
+
+                CARDS_DEALT_TO_DICT_MAP = {1:ACTION_DICT_1,2:ACTION_DICT_2,3:ACTION_DICT_3,5:ACTION_DICT_5}
+
+                # allocate cards to hands
+                if len(self.dealt_cards) == 1:
+                    ACTION_DICT_1[action].append(self.dealt_cards.pop(0))
+                else: 
+                    for i in range(len(self.dealt_cards)):
+                        CARDS_DEALT_TO_DICT_MAP[len(self.dealt_cards)][action].append(self.dealt_cards.pop(0))
+
+                # draw the next n cards for the next round
+                self.dealt_cards=self.deck.draw(self.n)
+                self.dealt_cards.sort(reverse = True)
+    
+    
     def set_fantasy(self):
         
         min_tot_rank = 0
