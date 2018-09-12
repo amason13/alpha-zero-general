@@ -177,6 +177,7 @@ class OFC(Game):
         board = board.reshape(1,52)
         print(board)
         #board = list(board)
+        board = board[0]
         print(board)
         # separate into suits            
         S = [board[i] for i in range(0,13)]
