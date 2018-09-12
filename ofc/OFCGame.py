@@ -199,9 +199,9 @@ class OFC(Game):
             #deck = deck[np.newaxis,:]
 
         # tuple with policy
-        l2 = [(el,pi) for el in l]
-        print(l2)
-        return l #newList
+        l = [(el,pi) for el in l]
+        
+        return l 
 
     def stringRepresentation(self, board):
         return board.tostring()
