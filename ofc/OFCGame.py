@@ -162,7 +162,6 @@ class OFC(Game):
     
     def getSymmetries(self, board, pi):
         print('getsymm')
-        print(board)
         """
         Input:
             board: current board
@@ -200,10 +199,11 @@ class OFC(Game):
             deck = deck[np.newaxis,:]
 
         # tuple with policy
-        for el in l:
-            el = (el,pi)
-        print(l)
-        return l
+        newList=[]
+        for i in range(len(l)):
+            newList[i] = (el,pi)
+        print(newList)
+        return l #newList
 
     def stringRepresentation(self, board):
         return board.tostring()
