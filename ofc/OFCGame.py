@@ -156,8 +156,12 @@ class OFC(Game):
         
     def getCanonicalForm(self, board, player):
         print('CanForm',board)
-       
-        return board*player
+        
+        player_hand = self.PLAYERS_HAND_DICT[player]
+        op_hand = self.PLAYERS_HAND_DICT[-player]
+        
+        can_board = hands_to_board(player_hand,op_hand)
+        return can_board
     
     
     def getSymmetries(self, board, pi):
