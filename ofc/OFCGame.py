@@ -176,7 +176,7 @@ class OFC(Game):
         # For example the state [Ah Kh Qh Jh Ts] is the same as [Ad Kd Qd Jd Tc].
         board = board.reshape(1,52)
         print(board)
-        board = list(board)
+        #board = list(board)
         print(board)
         # separate into suits            
         S = [board[i] for i in range(0,13)]
