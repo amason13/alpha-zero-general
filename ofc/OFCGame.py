@@ -175,11 +175,12 @@ class OFC(Game):
         # Symmetries in this context only occur by mapping suits to other suits. 
         # For example the state [Ah Kh Qh Jh Ts] is the same as [Ad Kd Qd Jd Tc].
         board = board.reshape(1,52)
+        board = board[0]
         # separate into suits            
-        S = [board[0][i] for i in range(0,13)]
-        H = [board[0][i] for i in range(13,26)]
-        D = [board[0][i] for i in range(26,39)]
-        C = [board[0][i] for i in range(39,52)]
+        S = [board[i] for i in range(0,13)]
+        H = [board[i] for i in range(13,26)]
+        D = [board[i] for i in range(26,39)]
+        C = [board[i] for i in range(39,52)]
         
         # create a list of all permutations of the suits
         l=[]
