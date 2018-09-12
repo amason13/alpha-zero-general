@@ -202,7 +202,7 @@ class playerHand:
                     ACTION_DICT_1[action].append(self.dealt_cards.pop(0))
                 else: 
                     for i in range(len(self.dealt_cards)):
-                        CARDS_DEALT_TO_DICT_MAP[len(self.dealt_cards)][action].append(self.dealt_cards.pop(0))
+                        CARDS_DEALT_TO_DICT_MAP[len(self.dealt_cards)][action][i].append(self.dealt_cards[i])
 
                 # draw the next n cards for the next round
                 self.dealt_cards=self.deck.draw(self.n)
