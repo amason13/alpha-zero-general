@@ -99,9 +99,11 @@ class OFC(Game):
         player_hand.dealt_cards = []
         if op_hand.is_empty() == 1:
             print('op empty')
-            op_hand.dealt_cards.append(self.deck.draw(5))
+            op_hand.dealt_cards = self.deck.draw(5)
         else:
-            op_hand.dealt_cards.append(self.deck.draw(self.n))
+            cards = self.deck.draw(self.n)
+            for card in cards:
+                op_hand.dealt_cards.append(card)
         # determine next board
         nextboard = hands_to_board(player_hand,op_hand)
         
