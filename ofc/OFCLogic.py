@@ -193,7 +193,7 @@ class playerHand:
                                     (B, M, T, B, T),(B, M, T, B, M),(B, M, T, B, B),(B, M, M, T, T),(B, M, M, T, M),(B, M, M, T, B),(B, M, M, M, T),(B, M, M, M, M),(B, M, M, M, B),(B, M, M, B, T),(B, M, M, B, M),(B, M, M, B, B),(B, M, B, T, T),(B, M, B, T, M),(B, M, B, T, B),(B, M, B, M, T),
                                     (B, M, B, M, M),(B, M, B, M, B),(B, M, B, B, T),(B, M, B, B, M),(B, M, B, B, B),(B, B, T, T, T),(B, B, T, T, M),(B, B, T, T, B),(B, B, T, M, T),(B, B, T, M, M),(B, B, T, M, B),(B, B, T, B, T),(B, B, T, B, M),(B, B, T, B, B),(B, B, M, T, T),(B, B, M, T, M),
                                     (B, B, M, T, B),(B, B, M, M, T),(B, B, M, M, M),(B, B, M, M, B),(B, B, M, B, T),(B, B, M, B, M),(B, B, M, B, B),(B, B, B, T, T),(B, B, B, T, M),(B, B, B, T, B),(B, B, B, M, T),(B, B, B, M, M),(B, B, B, M, B),(B, B, B, B, T),(B, B, B, B, M),(B, B, B, B, B)]
-                ACTION_DICT_5 = dict(zip(range(232),five_card_combos))
+                ACTION_DICT_5 = dict(zip(range(3,235),five_card_combos))
 
                 CARDS_DEALT_TO_DICT_MAP = {1:ACTION_DICT_1,2:ACTION_DICT_2,3:ACTION_DICT_3,5:ACTION_DICT_5}
 
