@@ -88,16 +88,16 @@ class OFC(Game):
         player_hand = self.PLAYERS_HAND_DICT[player]
         op_hand = self.PLAYERS_HAND_DICT[-1*player]
         # copy players hands
-        dummy_player_hand = deepcopy(player_hand)
-        dummy_op_hand = deepcopy(op_hand)
+        #dummy_player_hand = deepcopy(player_hand)
+        #dummy_op_hand = deepcopy(op_hand)
         # copy and reshuffle deck
-        dummy_deck = deepcopy(self.deck)
+        #dummy_deck = deepcopy(self.deck)
         #dummy_deck.reshuffle()
-        dummy_player_hand.execute_move(action)
-        dummy_player_hand.dealt_cards = []
-        dummy_player_hand.dealt_cards.append(dummy_deck.draw(self.n))
+        player_hand.execute_move(action)
+        player_hand.dealt_cards = []
+        player_hand.dealt_cards.append(self.deck.draw(self.n))
         # determine next board
-        nextboard = hands_to_board(dummy_player_hand,dummy_op_hand)
+        nextboard = hands_to_board(player_hand,op_hand)
         
         return nextboard, -1*player
         
