@@ -76,6 +76,7 @@ class OFC(Game):
         return 235
             
     def getNextState(self, board, player, action):
+        print('nextstate')
         """
         Input:
             board: current board
