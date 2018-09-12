@@ -206,12 +206,11 @@ class playerHand:
 
                 # draw the next n cards for the next round
                 self.dealt_cards=[]
-                if self.n == 1:
-                    self.dealt_cards.append(deck.draw(1))
-                else:
-                    next_cards = deck.draw(self.n)
-                    for j in range(self.n):
-                        self.dealt_cards.append(next_cards[j])
+                self.dealt_cards.append(deck.draw(1))
+                # if...
+                #    next_cards = deck.draw(self.n)
+                #    for j in range(self.n):
+                #        self.dealt_cards.append(next_cards[j])
                         
                 self.dealt_cards.sort(reverse = True)
     
