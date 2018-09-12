@@ -1,4 +1,4 @@
-from Game import Game
+from .Game import Game
 import numpy as np
 import itertools
 from .OFCLogic import *
