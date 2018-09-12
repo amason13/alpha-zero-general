@@ -95,7 +95,7 @@ class OFC(Game):
         #dummy_deck.reshuffle()
         dummy_player_hand.execute_move(action)
         dummy_player_hand.dealt_cards = []
-        dummy_player_hand.dealt_cards.append(self.deck.draw(self.n))
+        dummy_player_hand.dealt_cards.append(dummy_deck.draw(self.n))
         # determine next board
         nextboard = hands_to_board(dummy_player_hand,dummy_op_hand)
         
