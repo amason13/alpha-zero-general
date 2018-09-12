@@ -95,6 +95,7 @@ class OFC(Game):
         dummy_deck = deepcopy(self.deck)
         #dummy_deck.reshuffle()
         dummy_player_hand.execute_move(action)
+        dummy_player_hand.dealt_cards = self.deck.draw(self.n)
         # determine next board
         nextboard = hands_to_board(dummy_player_hand,dummy_op_hand)
         
