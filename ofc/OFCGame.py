@@ -162,6 +162,7 @@ class OFC(Game):
     
     def getSymmetries(self, board, pi):
         print('getsymm')
+        print(board)
         """
         Input:
             board: current board
