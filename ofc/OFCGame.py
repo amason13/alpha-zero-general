@@ -105,7 +105,7 @@ class OFC(Game):
             for card in cards:
                 op_hand.dealt_cards.append(card)
         # determine next board
-        nextboard = hands_to_board(player_hand,op_hand)
+        nextboard = hands_to_board(op_hand,player_hand)
         
         return nextboard, -1*player
         
