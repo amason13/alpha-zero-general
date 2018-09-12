@@ -13,7 +13,6 @@ Date: 29 Aug, 2018.
 class OFC(Game):
     # ph1, ph2 are playerHand objects, n = 1,2,3 for different variants of ofc.
     def __init__(self,ph1,ph2,n=1):
- #       self.round = 1
         # initiate playerHand obvjects
         self.ph1 = ph1
         self.ph2 = ph2
@@ -156,6 +155,7 @@ class OFC(Game):
 
         
     def getCanonicalForm(self, board, player):
+        print('CanForm',board)
        
         return board*player
     
