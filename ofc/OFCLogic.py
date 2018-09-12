@@ -199,7 +199,7 @@ class playerHand:
 
                 # allocate cards to hands
                 if len(self.dealt_cards) == 1:
-                    ACTION_DICT_1[action].append(self.dealt_cards.pop(0))
+                    ACTION_DICT_1[action%3].append(self.dealt_cards.pop(0))
                 else: 
                     for i in range(len(self.dealt_cards)):
                         CARDS_DEALT_TO_DICT_MAP[len(self.dealt_cards)][action][i].append(self.dealt_cards[i])
