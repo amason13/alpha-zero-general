@@ -21,15 +21,15 @@ args = dotdict({
 })
 
 if __name__=="__main__":
-    with device('/gpu:0'):
-        g = Game(6)
-        nnet = nn(g)
+    #with device('/gpu:0'):
+    g = Game(6)
+    nnet = nn(g)
 
-        if args.load_model:
-            nnet.load_checkpoint(args.load_folder_file[0], args.load_folder_file[1])
+    if args.load_model:
+        nnet.load_checkpoint(args.load_folder_file[0], args.load_folder_file[1])
 
-        c = Coach(g, nnet, args)
-        if args.load_model:
-            print("Load trainExamples from file")
-            c.loadTrainExamples()
-        c.learn()
+    c = Coach(g, nnet, args)
+    if args.load_model:
+        print("Load trainExamples from file")
+        c.loadTrainExamples()
+    c.learn()
