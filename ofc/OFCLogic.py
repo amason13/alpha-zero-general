@@ -217,21 +217,18 @@ class playerHand:
 
 
     def get_available_actions(self):
+        
+        
         T=self.top_hand
         M=self.middle_hand
         B=self.bottom_hand
             
         if len(self.dealt_cards)==5:
-            
-            return np.ones(232)
-        
-        elif len(self.dealt_cards)==3:
-            pass # need to add the logic for pinapple here
-        
-        elif len(self.dealt_cards)==2:
-            pass # need to add the logic for 2 card draw version
-    
+            x = np.ones(232)
+            y = np.zeros(3)
         else:
+            x = np.zeros(232)
+            
             t,m,b = 0,0,0
             
             if len(T)<3:
@@ -241,9 +238,20 @@ class playerHand:
                 m = 1
                 
             if len(B)<5:
-                b = 1     
-            
-        return np.array([t,m,b]) 
+                b = 1
+                
+            y = np.array([t,m,b])
+        
+        return np.concatenate((y,x),axis=0)
+    
+        #elif len(self.dealt_cards)==3:
+         #   pass # need to add the logic for pinapple here
+        
+        #elif len(self.dealt_cards)==2:
+         #   pass # need to add the logic for 2 card draw version
+    
+        
+                
    
     def is_empty(self):
         
