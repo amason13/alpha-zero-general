@@ -22,6 +22,7 @@ class SimpleNN():
         x = Dense(64, activation='relu')(x)
         x = Dense(64, activation='relu')(x)
         x = Dense(64, activation='relu')(x)
+        x = Flatten()(x)
 
         self.pi = Dense(self.action_size, activation='softmax', name='pi')(x)
         self.v = Dense(1, activation='tanh', name='v')(x)
