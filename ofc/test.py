@@ -1,6 +1,5 @@
-
-from .OFCLogic import *
-from .OFCGame import *
+from OFCLogic import *
+from OFCGame import *
 
 
 p1 = playerHand()
