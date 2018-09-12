@@ -155,12 +155,13 @@ class OFC(Game):
 
         
     def getCanonicalForm(self, board, player):
-        print('CanForm',board)
+        print(board)
         
         player_hand = self.PLAYERS_HAND_DICT[player]
         op_hand = self.PLAYERS_HAND_DICT[-player]
         
         can_board = hands_to_board(player_hand,op_hand)
+        print(can_board)
         return can_board
     
     
