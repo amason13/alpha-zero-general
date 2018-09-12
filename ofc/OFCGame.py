@@ -47,19 +47,17 @@ class OFC(Game):
             self.ph1.dealt_cards=self.deck.draw(13)
             self.ph1.set_fantasy()
             
-        #if self.ph2.in_fantasy == 0:
-         #   self.ph2.dealt_cards=self.deck.draw(5)
-        #else:
-        if self.ph2.in_fantasy == 1:
+        if self.ph2.in_fantasy == 0:
+            self.ph2.dealt_cards=self.deck.draw(5)
+        else:
+        #if self.ph2.in_fantasy == 1:
             self.ph2.dealt_cards=self.deck.draw(13)
             self.ph2.set_fantasy()
             
         # get initial board for each deal - (represented by a 52x1 numpy array) 
         board = hands_to_board(self.ph1,self.ph2)
-        print(board)
         return board
         
-
     def getBoardSize(self):
         """
         Returns:
@@ -97,13 +95,13 @@ class OFC(Game):
         #dummy_deck.reshuffle()
         player_hand.execute_move(action)
         player_hand.dealt_cards = []
-        if op_hand.is_empty() == 1:
-            print('op empty')
-            op_hand.dealt_cards = dummy_deck.draw(5)
-        else:
-            cards = dummy_deck.draw(self.n)
-            for card in cards:
-                op_hand.dealt_cards.append(card)
+        #if op_hand.is_empty() == 1:
+        #    print('op empty')
+        #    op_hand.dealt_cards = dummy_deck.draw(5)
+        #else:
+        #    cards = dummy_deck.draw(self.n)
+        #    for card in cards:
+        #        op_hand.dealt_cards.append(card)
         # determine next board
         nextboard = hands_to_board(op_hand,player_hand)
         
