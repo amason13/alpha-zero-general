@@ -196,7 +196,7 @@ class OFC(Game):
             for i in range(52):
                 deck[i]=board[i]
             deck = np.array(deck)
-            deck = deck[np.newaxis,:]
+            #deck = deck[np.newaxis,:]
 
         # tuple with policy
         newList=[]
