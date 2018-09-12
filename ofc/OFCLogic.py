@@ -645,12 +645,9 @@ def hands_to_board(hand1,hand2):
 
     for card in hand1.discards:
         board[full_deck.index(card)] = 4
-        
-    if len(hand1.dealt_cards) == 1:
-        board[full_deck.index(hand1.dealt_cards)] = 5
-    else:  
-        for card in hand1.dealt_cards:
-            board[full_deck.index(card)] = 5
+         
+    for card in hand1.dealt_cards:
+        board[full_deck.index(card)] = 5
     
     for card in hand2.top_hand:
         board[full_deck.index(card)] = -1
