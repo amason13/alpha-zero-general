@@ -90,20 +90,20 @@ class OFC(Game):
         player_hand = self.PLAYERS_HAND_DICT[player]
         op_hand = self.PLAYERS_HAND_DICT[-1*player]
         # copy players hands
-        #dummy_player_hand = deepcopy(player_hand)
-        #dummy_op_hand = deepcopy(op_hand)
+        dummy_player_hand = deepcopy(player_hand)
+        dummy_op_hand = deepcopy(op_hand)
         # copy and reshuffle deck
-        #dummy_deck = deepcopy(self.deck)
+        dummy_deck = deepcopy(self.deck)
         #dummy_deck.reshuffle()
-        player_hand.execute_move(action)
-        player_hand.dealt_cards = []
-        if op_hand.is_empty() == 1:
+        dummy_player_hand.execute_move(action)
+        dummy_player_hand.dealt_cards = []
+        if dummy_op_hand.is_empty() == 1:
             print('op empty')
-            op_hand.dealt_cards = self.deck.draw(5)
+            dummy_op_hand.dealt_cards = dummy_deck.draw(5)
         else:
-            cards = self.deck.draw(self.n)
+            cards = dummy_deck.draw(self.n)
             for card in cards:
-                op_hand.dealt_cards.append(card)
+                dummy_op_hand.dealt_cards.append(card)
         # determine next board
         nextboard = hands_to_board(player_hand,op_hand)
         
