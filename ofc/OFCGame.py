@@ -201,7 +201,7 @@ class OFC(Game):
         # tuple with policy
         newList=[]
         for i in range(len(l)):
-            newList[i] = (el,pi)
+            newList[i] = (l[i],pi)
         print(newList)
         return l #newList
 
