@@ -321,7 +321,7 @@ class playerHand:
    
     def is_empty(self):
         
-        if not (self.top_hand==[]) and (self.middle_hand==[]) and (self.bottom_hand==[]) and (self.discards==[]):
+        if not ((self.top_hand==[]) and (self.middle_hand==[]) and (self.bottom_hand==[]) and (self.discards==[])):
             return 0
         else:
             return 1
