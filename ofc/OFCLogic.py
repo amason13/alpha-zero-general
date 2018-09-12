@@ -142,7 +142,7 @@ class playerHand:
         
 
 
-    def execute_move(self, action):
+    def execute_move(self, action, deck):
             """
             Input:
                 board: current board
@@ -205,8 +205,15 @@ class playerHand:
                         CARDS_DEALT_TO_DICT_MAP[len(self.dealt_cards)][action][i].append(self.dealt_cards[i])
 
                 # draw the next n cards for the next round
-                # self.dealt_cards=self.deck.draw(self.n)
-                # self.dealt_cards.sort(reverse = True)
+                self.dealt_cards=[]
+                if self.n == 1:
+                    self.dealt_cards.append(deck.draw(1))
+                else:
+                    next_cards = deck.draw(self.n)
+                    for j in range(self.n):
+                        self.dealt_cards.append(next_cards[j])
+                        
+                self.dealt_cards.sort(reverse = True)
     
     
     def set_fantasy(self):
