@@ -47,10 +47,10 @@ class OFC(Game):
             self.ph1.dealt_cards=self.deck.draw(13)
             self.ph1.set_fantasy()
             
-        #if self.ph2.in_fantasy == 0:
-         #   self.ph2.dealt_cards=self.deck.draw(5)
-        #else:
-        if self.ph2.in_fantasy == 1:
+        if self.ph2.in_fantasy == 0:
+            self.ph2.dealt_cards=self.deck.draw(5)
+        else:
+        #if self.ph2.in_fantasy == 1:
             self.ph2.dealt_cards=self.deck.draw(13)
             self.ph2.set_fantasy()
             
@@ -97,6 +97,7 @@ class OFC(Game):
         player_hand.execute_move(action)
         player_hand.dealt_cards = []
         if op_hand.is_empty == 1:
+            print('op empty')
             op_hand.dealt_cards.append(self.deck.draw(5))
         else:
             op_hand.dealt_cards.append(self.deck.draw(self.n))
