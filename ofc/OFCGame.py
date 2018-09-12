@@ -96,7 +96,7 @@ class OFC(Game):
         #dummy_deck.reshuffle()
         dummy_player_hand.execute_move(action)
         # determine next board
-        nextboard = hands_to_board(dummy_op_hand,dummy_player_hand)
+        nextboard = hands_to_board(dummy_player_hand,dummy_op_hand)
         
         return nextboard, -1*player
         
