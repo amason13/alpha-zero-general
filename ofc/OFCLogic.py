@@ -205,8 +205,8 @@ class playerHand:
                         CARDS_DEALT_TO_DICT_MAP[len(self.dealt_cards)][action][i].append(self.dealt_cards[i])
 
                 # draw the next n cards for the next round
-                self.dealt_cards=self.deck.draw(self.n)
-                self.dealt_cards.sort(reverse = True)
+                # self.dealt_cards=self.deck.draw(self.n)
+                # self.dealt_cards.sort(reverse = True)
     
     
     def set_fantasy(self):
