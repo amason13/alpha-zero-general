@@ -94,7 +94,7 @@ class OFC(Game):
         #dummy_op_hand = deepcopy(op_hand)
         # copy and reshuffle deck
         dummy_deck = deepcopy(self.deck)
-        dummy_deck.reshuffle()
+        #dummy_deck.reshuffle()
         player_hand.execute_move(action)
         player_hand.dealt_cards = []
         if op_hand.is_empty() == 1:
