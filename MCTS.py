@@ -11,6 +11,7 @@ class MCTS():
         self.game = game
         self.nnet = nnet
         self.args = args
+        self.cur_player = 1
         self.Qsa = {}       # stores Q values for s,a (as defined in the paper)
         self.Nsa = {}       # stores #times edge s,a was visited
         self.Ns = {}        # stores #times board s was visited
@@ -64,7 +65,7 @@ class MCTS():
         s = self.game.stringRepresentation(canonicalBoard)
 
         if s not in self.Es:
-            self.Es[s] = self.game.getGameEnded(canonicalBoard, 1)
+            self.Es[s] = self.game.getGameEnded(canonicalBoard, self.cur_player)
         if self.Es[s]!=0:
             # terminal node
             return -self.Es[s]
@@ -72,7 +73,7 @@ class MCTS():
         if s not in self.Ps:
             # leaf node
             self.Ps[s], v = self.nnet.predict(canonicalBoard)
-            valids = self.game.getValidMoves(canonicalBoard, 1)
+            valids = self.game.getValidMoves(canonicalBoard, self.cur_player)
             self.Ps[s] = self.Ps[s]*valids      # masking invalid moves
             sum_Ps_s = np.sum(self.Ps[s])
             if sum_Ps_s > 0:
@@ -107,7 +108,7 @@ class MCTS():
                     best_act = a
 
         a = best_act
-        next_s, next_player = self.game.getNextState(canonicalBoard, 1, a)
+        next_s, self.cur_player = self.game.getNextState(canonicalBoard, self.cur_player, a)
         #next_s = self.game.getCanonicalForm(next_s, next_player)
 
         v = self.search(next_s)
