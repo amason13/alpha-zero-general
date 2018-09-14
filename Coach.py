@@ -23,17 +23,14 @@ class Coach():
         self.skipFirstSelfPlay = False # can be overriden in loadTrainExamples()
 
     def executeEpisode(self):
-        print('executeEp')
         """
         This function executes one episode of self-play, starting with player 1.
         As the game is played, each turn is added as a training example to
         trainExamples. The game is played till the game ends. After the game
         ends, the outcome of the game is used to assign values to each example
         in trainExamples.
-
         It uses a temp=1 if episodeStep < tempThreshold, and thereafter
         uses temp=0.
-
         Returns:
             trainExamples: a list of examples of the form (canonicalBoard,pi,v)
                            pi is the MCTS informed policy vector, v is +1 if
@@ -59,11 +56,10 @@ class Coach():
 
             r = self.game.getGameEnded(board, self.curPlayer)
 
-            if r!=False:
+            if r!=0:
                 return [(x[0],x[2],r*((-1)**(x[1]!=self.curPlayer))) for x in trainExamples]
 
     def learn(self):
-        print('learn')
         """
         Performs numIters iterations with numEps episodes of self-play in each
         iteration. After every iteration, it retrains neural network with
