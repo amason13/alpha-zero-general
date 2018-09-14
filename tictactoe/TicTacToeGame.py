@@ -66,9 +66,9 @@ class TicTacToeGame(Game):
         if b.is_win(-player):
             return -1
         if b.has_legal_moves():
-            return 0
+            return False
         # draw has a very little value 
-        return 1e-4
+        return 0
 
     def getCanonicalForm(self, board, player):
         # return state if player==1, else return -state if player==-1
