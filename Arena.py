@@ -37,7 +37,7 @@ class Arena():
         curPlayer = 1
         board = self.game.getInitBoard()
         it = 0
-        while self.game.getGameEnded(board, curPlayer)==False:
+        while self.game.getGameEnded(board, curPlayer)==0:
             it+=1
             if verbose:
                 assert(self.display)
@@ -74,19 +74,17 @@ class Arena():
         maxeps = int(num)
 
         num = int(num/2)
-        SCORE = 0
         oneWon = 0
         twoWon = 0
         draws = 0
         for _ in range(num):
             gameResult = self.playGame(verbose=verbose)
-            if gameResult>0:
+            if gameResult==1:
                 oneWon+=1
-            elif gameResult<0:
+            elif gameResult==-1:
                 twoWon+=1
             else:
                 draws+=1
-            SCORE += gameResult
             # bookkeeping + plot progress
             eps += 1
             eps_time.update(time.time() - end)
@@ -99,9 +97,9 @@ class Arena():
         
         for _ in range(num):
             gameResult = self.playGame(verbose=verbose)
-            if gameResult>0:
+            if gameResult==-1:
                 oneWon+=1                
-            elif gameResult<0:
+            elif gameResult==1:
                 twoWon+=1
             else:
                 draws+=1
