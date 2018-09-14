@@ -1,5 +1,5 @@
 from Coach import Coach
-from connect4.OthelloGame import OthelloGame as Game
+from connect4.Connect4Game import Connect4Game as Game
 from connect4.keras.NNet import NNetWrapper as nn
 from utils import *
 
