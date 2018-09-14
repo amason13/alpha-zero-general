@@ -8,10 +8,8 @@ import numpy as np
 """
 Game class implementation for the game of TicTacToe.
 Based on the OthelloGame then getGameEnded() was adapted to new rules.
-
 Author: Evgeny Tyurin, github.com/evg-tyurin
 Date: Jan 5, 2018.
-
 Based on the OthelloGame by Surag Nair.
 """
 class TicTacToeGame(Game):
@@ -66,9 +64,9 @@ class TicTacToeGame(Game):
         if b.is_win(-player):
             return -1
         if b.has_legal_moves():
-            return False
+            return 0
         # draw has a very little value 
-        return 0
+        return 1e-4
 
     def getCanonicalForm(self, board, player):
         # return state if player==1, else return -state if player==-1
