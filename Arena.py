@@ -115,4 +115,4 @@ class Arena():
             
         bar.finish()
 
-        return oneWon, twoWon, draws, SCORE
+        return oneWon, twoWon, draws
