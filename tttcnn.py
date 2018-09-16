@@ -13,7 +13,7 @@ args = dotdict({
     'arenaCompare': 40,
     'cpuct': 1,
 
-    'checkpoint': './temp/',
+    'checkpoint': './ttttemp/',
     'load_model': False,
     'load_folder_file': ('/dev/models/8x100x50','best.pth.tar'),
     'numItersForTrainExamplesHistory': 20,
