@@ -26,7 +26,6 @@ class TicTacToeNNet():
         self.input_boards = Input(shape=(self.board_x, self.board_y))
         x = Reshape((self.board_x, self.board_y, 1))(self.input_boards)         
         x = Dense(12, activation='relu')(x)
-        x = Dense(12, activation='relu')(x)
         x = Flatten()(x)
 
         self.pi = Dense(self.action_size, activation='softmax', name='pi')(x)
