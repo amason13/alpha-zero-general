@@ -42,7 +42,7 @@ class Connect4NNet2():
         # Neural Net
         self.input_boards = Input(shape=(self.board_x, self.board_y))    # s: batch_size x board_x x board_y
 
-        x = Dense(128, activation='relu')(x)
+        x = Dense(128, activation='relu')(self.input_boards)
         
         self.pi = Dense(self.action_size, activation='softmax', name='pi')(x)
         self.v = Dense(1, activation='tanh', name='v')(x)
