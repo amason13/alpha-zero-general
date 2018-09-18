@@ -62,9 +62,11 @@ class Connect4NNet3():
         
         self.input_boards = Input(shape=(self.board_x, self.board_y))
         
+        x_flat = Flatten()(self.input_boards)
+        
         # Headline input: meant to receive sequences of 100 integers, between 1 and 10000.
         # Note that we can name any layer by passing it a "name" argument.
-        self.input_sequences = Input(shape=(20, self.board_x, self.board_y), dtype='int32')
+        self.input_sequences = Input(shape=(20, self.dim), dtype='int32')
 
         # This embedding layer will encode the input sequence
         # into a sequence of dense 512-dimensional vectors.
