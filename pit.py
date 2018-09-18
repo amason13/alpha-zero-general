@@ -2,7 +2,7 @@ import Arena
 from MCTS import MCTS
 from connect4.Connect4Game import Connect4Game, display
 from connect4.Connect4Players import *
-from connect4.keras.NNet import NNetWrapper as NNet
+from connect4.keras.NNet2 import NNetWrapper as NNet
 
 import numpy as np
 from utils import *
