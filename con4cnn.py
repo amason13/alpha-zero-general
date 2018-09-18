@@ -1,3 +1,6 @@
+import os
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
+
 from Coach import Coach
 from connect4.Connect4Game import Connect4Game as Game
 from connect4.keras.NNet import NNetWrapper as nn
