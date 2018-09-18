@@ -15,7 +15,7 @@ args = dotdict({
 
     'checkpoint': './gobangtemp2/',
     'load_model': True,
-    'load_folder_file': ('./gobangtemp2/','checkpoint_29.pth.tar'),
+    'load_folder_file': ('./gobangtemp2/best.pth.tar','best.pth.tar'),
     'numItersForTrainExamplesHistory': 20,
 
 })
