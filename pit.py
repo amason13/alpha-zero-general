@@ -17,7 +17,7 @@ g = Connect4Game()
 # all players
 rp = RandomPlayer(g).play
 #gp = GreedyOthelloPlayer(g).play
-hp = HumanConnect4(g).play
+hp = HumanConnect4Player(g).play
 
 # nnet players
 n1 = NNet(g)
