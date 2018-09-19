@@ -63,7 +63,7 @@ class Connect4NNet3():
         # Neural Net
         self.input_boards = Input(batch_shape=(None,self.dim))#.board_x, self.board_y))    # s: batch_size x board_x x board_y
 
-        x = LSTM(128, input_shape = (self.board_x,self.board_y), activation='tanh',recurrent_activation='hard_sigmoid')(self.input_boards)
+        x = LSTM(128,  activation='tanh',recurrent_activation='hard_sigmoid')(self.input_boards)
         #x_flat = Flatten()(x)
         
         self.pi = Dense(self.action_size, activation='softmax', name='pi')(x)#_flat)
