@@ -52,7 +52,7 @@ class Connect4NNet2():
         self.model.compile(loss=['categorical_crossentropy','mean_squared_error'], optimizer=Adam(args.lr))
         
         
-class Connect4NNet3():
+class Connect4NNet4():
     def __init__(self, game, args):
         # game params
         self.board_x, self.board_y = game.getBoardSize()
@@ -61,11 +61,11 @@ class Connect4NNet3():
         self.dim = self.board_x*self.board_y
         
         # Neural Net
-        self.input_boards = Input(shape=(self.dim,))    # s: batch_size x board_x x board_y
+        self.input_boards = Input(shape=(self.board_x,self.board_y))    # s: batch_size x board_x x board_y
 
-        x = LSTM(128, activation='tanh',recurrent_activation='hard_sigmoid')(self.input_boards)
+        x = LSTM(128, input_shape = (self.board_x,self.board_y), activation='tanh',recurrent_activation='hard_sigmoid')(self.input_boards)
         
-        #x_flat = Flatten()(x)
+        x_flat = Flatten()(x)
         
         self.pi = Dense(self.action_size, activation='softmax', name='pi')(x_flat)
         self.v = Dense(1, activation='tanh', name='v')(x_flat)
