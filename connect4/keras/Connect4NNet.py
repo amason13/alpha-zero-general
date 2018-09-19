@@ -76,7 +76,7 @@ class Connect4NNet4():
         
         
         
-class Connect4NNet4():
+class Connect4NNet3():
     def __init__(self, game, args):
         # game params
         self.board_x, self.board_y = game.getBoardSize()
