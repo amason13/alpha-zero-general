@@ -54,7 +54,7 @@ class OthelloNNet2():
         
         
         
-class Othello4NNet3():
+class OthelloNNet3():
     def __init__(self, game, args):
         # game params
         self.board_x, self.board_y = game.getBoardSize()
