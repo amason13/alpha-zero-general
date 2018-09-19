@@ -58,9 +58,10 @@ class Connect4NNet3():
         self.board_x, self.board_y = game.getBoardSize()
         self.action_size = game.getActionSize()
         self.args = args
-
+        self.dim = self.board_x*self.board_y
+        
         # Neural Net
-        self.input_boards = Input(shape=(1,(self.board_x, self.board_y)))    # s: batch_size x board_x x board_y
+        self.input_boards = Input(shape=(1,self.dim))#board_x, self.board_y))    # s: batch_size x board_x x board_y
 
         x = LSTM(128, activation='tanh',recurrent_activation='hard_sigmoid')(self.input_boards)
         x_flat = Flatten()(x)
