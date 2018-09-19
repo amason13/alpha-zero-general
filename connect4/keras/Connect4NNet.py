@@ -86,7 +86,7 @@ class Connect4NNet3():
         # Neural Net
         self.input_boards = Input(shape=(self.board_x, self.board_y))    # s: batch_size x board_x x board_y
 
-        x_image = Reshape((self.board_x, self.board_y, 1))(self.input_boards)                # batch_size  x board_x x board_y x 1
+        x_image = Reshape((self.board_x, self.board_y, 1,1))(self.input_boards)                # batch_size  x board_x x board_y x 1
         h_conv1 = Activation('relu')(BatchNormalization(axis=3)(ConvLSTM2D(args.num_channels, 3, padding='same', use_bias=False)(x_image)))         # batch_size  x board_x x board_y x num_channels
         h_conv2 = Activation('relu')(BatchNormalization(axis=3)(ConvLSTM2D(args.num_channels, 3, padding='same', use_bias=False)(h_conv1)))         # batch_size  x board_x x board_y x num_channels
         h_conv3 = Activation('relu')(BatchNormalization(axis=3)(ConvLSTM2D(args.num_channels, 3, padding='valid', use_bias=False)(h_conv2)))        # batch_size  x (board_x-2) x (board_y-2) x num_channels
