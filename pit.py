@@ -2,7 +2,7 @@ import Arena
 from MCTS import MCTS
 from othello.OthelloGame import OthelloGame, display
 from othello.OthelloPlayers import *
-from othello.keras.NNet import NNetWrapper as NNet
+from othello.keras.NNet2 import NNetWrapper as NNet
 
 import numpy as np
 from utils import *
