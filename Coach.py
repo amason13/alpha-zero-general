@@ -138,7 +138,7 @@ class Coach():
             win_pct = pwins/self.args.arenaCompare
             
             f = open("performance.txt", "a+")
-            f.write("iteration %d, percentage %d /n" (i, win_pct))
+            f.write(i, win_pct)
             f.close()
     
            
