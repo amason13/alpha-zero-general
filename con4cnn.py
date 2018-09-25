@@ -1,9 +1,6 @@
-import os
-os.environ["CUDA_VISIBLE_DEVICES"]="0"
-
 from Coach import Coach
 from connect4.Connect4Game import Connect4Game as Game
-from connect4.keras.NNet import NNetWrapper as nn
+from connect4.keras.CNN import NNetWrapper as nn
 from utils import *
 
 args = dotdict({
@@ -16,9 +13,9 @@ args = dotdict({
     'arenaCompare': 40,
     'cpuct': 1,
 
-    'checkpoint': './con4temp/',
+    'checkpoint': './c4cnntemp/',
     'load_model': False,
-    'load_folder_file': ('./con4temp/','checkpoint_12.pth.tar'),
+    'load_folder_file': ('./c4cnntemp/','best.pth.tar'),
     'numItersForTrainExamplesHistory': 20,
 
 })
