@@ -1,6 +1,6 @@
 from Coach import Coach
 from connect4.Connect4Game import Connect4Game as Game
-from connect4.keras.NNet3 import NNetWrapper as nn
+from connect4.keras.LSTM128 import NNetWrapper as nn
 from utils import *
 
 args = dotdict({
@@ -13,9 +13,9 @@ args = dotdict({
     'arenaCompare': 40,
     'cpuct': 1,
 
-    'checkpoint': './con4temp3/',
+    'checkpoint': './c4lstm128temp/',
     'load_model': False,
-    'load_folder_file': ('./con4temp/','checkpoint_12.pth.tar'),
+    'load_folder_file': ('./c4lstm128temp/','best.pth.tar'),
     'numItersForTrainExamplesHistory': 20,
 
 })
