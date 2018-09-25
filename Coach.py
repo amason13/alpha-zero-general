@@ -136,10 +136,12 @@ class Coach():
                           self.game.rp(self.game).play, self.game)
             pwins, nwins, draws = arena.playGames(self.args.arenaCompare/2)
             win_pct = pwins/self.args.arenaCompare
+            my_tuple = (i,win_pct)
+            my_string = str(my_tuple)
             
-            f = open("performance.txt", "a+")
-            f.write(i, win_pct)
-            f.close()
+            with open('your_file.txt', 'w') as f:
+                    f.write(my_string \n)
+            
     
            
     def getCheckpointFile(self, iteration):
