@@ -11,7 +11,7 @@ from utils import *
 from NeuralNet import NeuralNet
 
 import argparse
-from .OthelloNNet import OthelloNNet2 as onnet
+from .OthelloNNet import NN64 as onnet
 
 args = dotdict({
     'lr': 0.001,
