@@ -11,7 +11,7 @@ from utils import *
 from NeuralNet import NeuralNet
 
 import argparse
-from .Connect4NNet import Connect4NNet as onnet
+from .Connect4NNet import CNN as onnet
 
 args = dotdict({
     'lr': 0.001,
