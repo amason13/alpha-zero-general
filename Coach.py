@@ -133,7 +133,7 @@ class Coach():
 
             print('PITTING AGAINST RANDOM PLAYER')
             arena = Arena( lambda x: np.argmax(nmcts.getActionProb(x, temp=0)),
-                          self.game.rp.(self.game).play, self.game)
+                          self.game.rp(self.game).play, self.game)
             pwins, nwins, draws = arena.playGames(self.args.arenaCompare)
             
             with open("performance.txt", "a") as myfile:
