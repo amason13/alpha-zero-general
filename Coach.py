@@ -8,6 +8,7 @@ from pickle import Pickler, Unpickler
 from random import shuffle
 
 
+
 class Coach():
     """
     This class executes the self-play + learning. It uses the functions defined
@@ -21,7 +22,8 @@ class Coach():
         self.mcts = MCTS(self.game, self.nnet, self.args)
         self.trainExamplesHistory = []    # history of examples from args.numItersForTrainExamplesHistory latest iterations
         self.skipFirstSelfPlay = False # can be overriden in loadTrainExamples()
-
+        self.performance = []
+        
     def executeEpisode(self):
         """
         This function executes one episode of self-play, starting with player 1.
@@ -129,6 +131,15 @@ class Coach():
                 self.nnet.save_checkpoint(folder=self.args.checkpoint, filename=self.getCheckpointFile(i))
                 self.nnet.save_checkpoint(folder=self.args.checkpoint, filename='best.pth.tar')                
 
+            print('PITTING AGAINST RANDOM PLAYER')
+            arena = Arena(self.game.rp.play,
+                          lambda x: np.argmax(nmcts.getActionProb(x, temp=0)), self.game)
+            pwins, nwins, draws = arena.playGames(self.args.arenaCompare)
+            
+            with open("performance.txt", "a") as myfile:
+                myfile.write(\n i, pwins/self.args.arenaCompare)
+    
+           
     def getCheckpointFile(self, iteration):
         return 'checkpoint_' + str(iteration) + '.pth.tar'
 
