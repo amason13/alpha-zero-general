@@ -6,7 +6,7 @@ from pytorch_classification.utils import Bar, AverageMeter
 import time, os, sys
 from pickle import Pickler, Unpickler
 from random import shuffle
-
+import os.path
 
 
 class Coach():
@@ -139,7 +139,8 @@ class Coach():
             my_tuple = (i,win_pct)
             my_string = str(my_tuple)
             
-            with open('your_file.txt', 'w') as f:
+            full_name = os.path.join(self.args.checkpoint, "perf.txt")
+            with open(full_name, 'w') as f:
                     f.write("%s \n" %(my_string))
             
     
