@@ -140,7 +140,7 @@ class Coach():
             my_string = str(my_tuple)
             
             with open('your_file.txt', 'w') as f:
-                    f.write("%s \n") % (my_string)
+                    f.write("%s \n" %(my_string))
             
     
            
