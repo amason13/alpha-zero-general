@@ -140,7 +140,7 @@ class Coach():
             my_string = str(my_tuple)
             
             full_name = os.path.join(self.args.checkpoint, "perf.txt")
-            with open(full_name, 'w') as f:
+            with open(full_name, 'a+') as f:
                     f.write("%s \n" %(my_string))
             
     
