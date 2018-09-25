@@ -7,7 +7,7 @@ from keras.models import *
 from keras.layers import *
 from keras.optimizers import *
 
-class Connect4NNet():
+class CNN():
     def __init__(self, game, args):
         # game params
         self.board_x, self.board_y = game.getBoardSize()
@@ -31,8 +31,26 @@ class Connect4NNet():
         self.model = Model(inputs=self.input_boards, outputs=[self.pi, self.v])
         self.model.compile(loss=['categorical_crossentropy','mean_squared_error'], optimizer=Adam(args.lr))
 
-     
-class Connect4NNet2():
+class NN64():
+    def __init__(self, game, args):
+        # game params
+        self.board_x, self.board_y = game.getBoardSize()
+        self.action_size = game.getActionSize()
+        self.args = args
+
+        # Neural Net
+        self.input_boards = Input(shape=(self.board_x, self.board_y))    # s: batch_size x board_x x board_y
+
+        x = Dense(64, activation='relu')(self.input_boards)
+        x_flat = Flatten()(x)
+        
+        self.pi = Dense(self.action_size, activation='softmax', name='pi')(x_flat)
+        self.v = Dense(1, activation='tanh', name='v')(x_flat)
+
+        self.model = Model(inputs=self.input_boards, outputs=[self.pi, self.v])
+        self.model.compile(loss=['categorical_crossentropy','mean_squared_error'], optimizer=Adam(args.lr))
+        
+class NN128():
     def __init__(self, game, args):
         # game params
         self.board_x, self.board_y = game.getBoardSize()
@@ -52,7 +70,29 @@ class Connect4NNet2():
         self.model.compile(loss=['categorical_crossentropy','mean_squared_error'], optimizer=Adam(args.lr))
         
         
-class Connect4NNet3():
+class LSTM64():
+    def __init__(self, game, args):
+        # game params
+        self.board_x, self.board_y = game.getBoardSize()
+        self.action_size = game.getActionSize()
+        self.args = args
+        self.dim = self.board_x*self.board_y
+        
+        # Neural Net
+        self.input_boards = Input(shape=(self.board_x,self.board_y))    # s: batch_size x board_x x board_y
+
+        x = LSTM(64, return_sequences=True, input_shape = (self.board_x,self.board_y), activation='tanh',recurrent_activation='hard_sigmoid')(self.input_boards)
+        
+        x_flat = Flatten()(x)
+        
+        self.pi = Dense(self.action_size, activation='softmax', name='pi')(x_flat)
+        self.v = Dense(1, activation='tanh', name='v')(x_flat)
+
+        self.model = Model(inputs=self.input_boards, outputs=[self.pi, self.v])
+        self.model.compile(loss=['categorical_crossentropy','mean_squared_error'], optimizer=Adam(args.lr))
+        
+        
+ class LSTM128():
     def __init__(self, game, args):
         # game params
         self.board_x, self.board_y = game.getBoardSize()
@@ -74,9 +114,7 @@ class Connect4NNet3():
         self.model.compile(loss=['categorical_crossentropy','mean_squared_error'], optimizer=Adam(args.lr))
         
         
-        
-        
-class Connect4NNet4():
+class ConvLSTM():
     def __init__(self, game, args):
         # game params
         self.board_x, self.board_y = game.getBoardSize()
