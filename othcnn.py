@@ -1,6 +1,6 @@
 from Coach import Coach
 from othello.OthelloGame import OthelloGame as Game
-from othello.keras.NNet import NNetWrapper as nn
+from othello.keras.CNN import NNetWrapper as nn
 from utils import *
 
 args = dotdict({
@@ -13,9 +13,9 @@ args = dotdict({
     'arenaCompare': 40,
     'cpuct': 1,
 
-    'checkpoint': './othtemp/',
+    'checkpoint': './othcnntemp/',
     'load_model': False,
-    'load_folder_file': ('./othtemp/','checkpoint_6.pth.tar'),
+    'load_folder_file': ('./othcnntemp/','best.pth.tar'),
     'numItersForTrainExamplesHistory': 20,
 
 })
