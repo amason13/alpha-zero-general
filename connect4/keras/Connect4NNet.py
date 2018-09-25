@@ -92,7 +92,7 @@ class LSTM64():
         self.model.compile(loss=['categorical_crossentropy','mean_squared_error'], optimizer=Adam(args.lr))
         
         
- class LSTM128():
+class LSTM128():
     def __init__(self, game, args):
         # game params
         self.board_x, self.board_y = game.getBoardSize()
