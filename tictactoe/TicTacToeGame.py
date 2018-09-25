@@ -4,6 +4,7 @@ sys.path.append('..')
 from Game import Game
 from .TicTacToeLogic import Board
 import numpy as np
+from tictactoe.TicTacToePlayers import RandomPlayer as rp
 
 """
 Game class implementation for the game of TicTacToe.
@@ -15,6 +16,7 @@ Based on the OthelloGame by Surag Nair.
 class TicTacToeGame(Game):
     def __init__(self, n=3):
         self.n = n
+        self.rp = rp
 
     def getInitBoard(self):
         # return initial board (numpy board)
