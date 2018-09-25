@@ -137,10 +137,10 @@ class Coach():
             pwins, nwins, draws = arena.playGames(self.args.arenaCompare/2)
             win_pct = pwins/self.args.arenaCompare
             my_tuple = (i,win_pct)
-            my_string = str(my_tuple)
+            my_string = str(my_tuple \n)
             
             with open('your_file.txt', 'w') as f:
-                    f.write(\n my_string)
+                    f.write(my_string)
             
     
            
