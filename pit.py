@@ -18,8 +18,8 @@ g = TicTacToeGame()
 
 # all players
 rp = RandomPlayer(g).play
-gp = GreedyOthelloPlayer(g).play
-hp = HumanOthelloPlayer(g).play
+#gp = GreedyOthelloPlayer(g).play
+#hp = HumanOthelloPlayer(g).play
 
 # nnet players
 n1 = NNet(g)
