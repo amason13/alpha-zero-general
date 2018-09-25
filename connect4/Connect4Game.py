@@ -4,7 +4,7 @@ import numpy as np
 sys.path.append('..')
 from Game import Game
 from .Connect4Logic import Board
-from othello.OthelloPlayers import RandomPlayer as rp
+from connect4.Connect4Players import RandomPlayer as rp
 
 
 class Connect4Game(Game):
