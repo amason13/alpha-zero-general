@@ -4,12 +4,14 @@ sys.path.append('..')
 from Game import Game
 from .GobangLogic import Board
 import numpy as np
+from gobang.GobangPlayers import RandomPlayer as rp
 
 
 class GobangGame(Game):
     def __init__(self, n=15, nir=5):
         self.n = n
         self.n_in_row = nir
+        self.rp = rp
 
     def getInitBoard(self):
         # return initial board (numpy board)
