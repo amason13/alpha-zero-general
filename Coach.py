@@ -132,8 +132,8 @@ class Coach():
                 self.nnet.save_checkpoint(folder=self.args.checkpoint, filename='best.pth.tar')                
 
             print('PITTING AGAINST RANDOM PLAYER')
-            arena = Arena(self.game.rp.play,
-                          lambda x: np.argmax(nmcts.getActionProb(x, temp=0)), self.game)
+            arena = Arena( lambda x: np.argmax(nmcts.getActionProb(x, temp=0)),
+                          self.game.rp.play, self.game)
             pwins, nwins, draws = arena.playGames(self.args.arenaCompare)
             
             with open("performance.txt", "a") as myfile:
