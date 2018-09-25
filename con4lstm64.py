@@ -13,9 +13,9 @@ args = dotdict({
     'arenaCompare': 40,
     'cpuct': 1,
 
-    'checkpoint': './LSTM64temp/',
+    'checkpoint': './c4lstm64temp/',
     'load_model': False,
-    'load_folder_file': ('./LSTM64temp/','best.pth.tar'),
+    'load_folder_file': ('./c4lstm64temp/','best.pth.tar'),
     'numItersForTrainExamplesHistory': 20,
 
 })
