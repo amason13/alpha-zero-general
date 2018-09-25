@@ -135,9 +135,9 @@ class Coach():
             arena = Arena( lambda x: np.argmax(nmcts.getActionProb(x, temp=0)),
                           self.game.rp(self.game).play, self.game)
             pwins, nwins, draws = arena.playGames(self.args.arenaCompare)
-            
+            win_pct = pwins/self.args.arenaCompare
             with open("performance.txt", "a") as myfile:
-                myfile.write((i, pwins/self.args.arenaCompare))
+                myfile.write(i, win_pct)
     
            
     def getCheckpointFile(self, iteration):
