@@ -1,7 +1,7 @@
 import Arena
 from MCTS import MCTS
 from tictactoe.TicTacToeGame import TicTacToeGame, display
-from tictactoe.OthelloPlayers import *
+from tictactoe.TicTacToePlayers import *
 from tictactoe.keras.NNet import NNetWrapper as NNet
 #from tictactoe.keras.NNet2 import NNetWrapper as NNet2
 #from tictactoe.keras.NNet3 import NNetWrapper as NNet3
