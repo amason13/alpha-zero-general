@@ -4,11 +4,13 @@ sys.path.append('..')
 from Game import Game
 from .OthelloLogic import Board
 import numpy as np
+from othello.OthelloPlayers import RandomPlayer as othrp
 
 
 class OthelloGame(Game):
     def __init__(self, n):
         self.n = n
+        self.rp = othrp
 
     def getInitBoard(self):
         # return initial board (numpy board)
