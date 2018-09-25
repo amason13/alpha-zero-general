@@ -138,7 +138,7 @@ class Coach():
             win_pct = pwins/self.args.arenaCompare
             
             with open("performance.txt", "a+") as myfile:
-                myfile.write("%d, %d /n" %i %win_pct)
+                myfile.write("%d , %d /n" (i, win_pct))
     
            
     def getCheckpointFile(self, iteration):
