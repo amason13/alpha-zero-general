@@ -5,6 +5,7 @@ sys.path.append('..')
 from Game import Game
 from .Connect4Logic import Board
 from connect4.Connect4Players import RandomPlayer as rp
+from connect4.Connect4Players import OneStepLookaheadConnect4Player as gp
 
 
 class Connect4Game(Game):
@@ -16,6 +17,7 @@ class Connect4Game(Game):
         Game.__init__(self)
         self._base_board = Board(height, width, win_length, np_pieces)
         self.rp = rp
+        self.gp = gp
 
     def getInitBoard(self):
         return self._base_board.np_pieces
