@@ -26,15 +26,15 @@ class Coach():
         if game.id == -1:
             n1 = NNetcon4(self.game)
             n1.load_checkpoint('./con4temp2/','best.pth.tar')
-            args1 = dotdict({'numMCTSSims': 25, 'cpuct':1.0})
-            mcts1 = MCTS(self.game, n1, args1)
+            #args1 = dotdict({'numMCTSSims': 25, 'cpuct':1.0})
+            mcts1 = MCTS(self.game, n1, self.args)
             self.n1p = lambda x: np.argmax(mcts1.getActionProb(x, temp=0))
 
         elif game.id == 1:
             n1 = NNetoth(self.game)
             n1.load_checkpoint('./othtemp2/','best.pth.tar')
-            args1 = dotdict({'numMCTSSims': 25, 'cpuct':1.0})
-            mcts1 = MCTS(self.game, n1, args1)
+            #args1 = dotdict({'numMCTSSims': 25, 'cpuct':1.0})
+            mcts1 = MCTS(self.game, n1, self.args)
             self.n1p = lambda x: np.argmax(mcts1.getActionProb(x, temp=0))
             
         
