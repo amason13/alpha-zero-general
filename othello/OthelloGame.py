@@ -12,7 +12,7 @@ class OthelloGame(Game):
         self.n = n
         self.rp = rp
         self.gp = gp
-        self.id = oth
+        self.id = 1
         
     def getInitBoard(self):
         # return initial board (numpy board)
