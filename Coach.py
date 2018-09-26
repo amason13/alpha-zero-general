@@ -135,11 +135,23 @@ class Coach():
             arena = Arena( lambda x: np.argmax(nmcts.getActionProb(x, temp=0)),
                           self.game.rp(self.game).play, self.game)
             pwins, nwins, draws = arena.playGames(self.args.arenaCompare/2)
-            win_pct = pwins/self.args.arenaCompare
+            win_pct = pwins/self.args.arenaCompare/2
             my_tuple = (i,win_pct)
             my_string = str(my_tuple)
             
-            full_name = os.path.join(self.args.checkpoint, "perf.txt")
+            full_name = os.path.join(self.args.checkpoint, "random.txt")
+            with open(full_name, 'a+') as f:
+                    f.write("%s \n" %(my_string))
+                    
+            print('PITTING AGAINST GREEDY PLAYER')
+            arena = Arena( lambda x: np.argmax(nmcts.getActionProb(x, temp=0)),
+                          self.game.gp(self.game).play, self.game)
+            pwins, nwins, draws = arena.playGames(self.args.arenaCompare/2)
+            win_pct = pwins/self.args.arenaCompare/2
+            my_tuple = (i,win_pct)
+            my_string = str(my_tuple)
+            
+            full_name = os.path.join(self.args.checkpoint, "greedy.txt")
             with open(full_name, 'a+') as f:
                     f.write("%s \n" %(my_string))
             
