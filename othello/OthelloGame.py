@@ -5,13 +5,14 @@ from Game import Game
 from .OthelloLogic import Board
 import numpy as np
 from othello.OthelloPlayers import RandomPlayer as rp
-
+from othello.OthelloPlayers import GreedyOthelloPlayer as gp
 
 class OthelloGame(Game):
     def __init__(self, n):
         self.n = n
         self.rp = rp
-
+        self.gp = gp
+        
     def getInitBoard(self):
         # return initial board (numpy board)
         b = Board(self.n)
