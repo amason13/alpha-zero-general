@@ -7,7 +7,8 @@ import time, os, sys
 from pickle import Pickler, Unpickler
 from random import shuffle
 import os.path
-
+from connect4.keras.NNet import NNetWrapper as NNetcon4
+from othello.keras.NNet import NNetWrapper as NNetoth
 
 class Coach():
     """
@@ -22,7 +23,20 @@ class Coach():
         self.mcts = MCTS(self.game, self.nnet, self.args)
         self.trainExamplesHistory = []    # history of examples from args.numItersForTrainExamplesHistory latest iterations
         self.skipFirstSelfPlay = False # can be overriden in loadTrainExamples()
-        self.performance = []
+        if game.id == con4:
+            n1 = NNet(g)
+            n1.load_checkpoint('./con4temp2/','best.pth.tar')
+            args1 = dotdict({'numMCTSSims': 25, 'cpuct':1.0})
+            mcts1 = MCTS(g, n1, args1)
+            self.n1p = lambda x: np.argmax(mcts1.getActionProb(x, temp=0))
+
+        elif game.id == oth:
+            n1 = NNet(g)
+            n1.load_checkpoint('./othtemp2/','best.pth.tar')
+            args1 = dotdict({'numMCTSSims': 25, 'cpuct':1.0})
+            mcts1 = MCTS(g, n1, args1)
+            self.n1p = lambda x: np.argmax(mcts1.getActionProb(x, temp=0))
+            
         
     def executeEpisode(self):
         """
@@ -135,7 +149,7 @@ class Coach():
             arena = Arena( lambda x: np.argmax(nmcts.getActionProb(x, temp=0)),
                           self.game.rp(self.game).play, self.game)
             pwins, nwins, draws = arena.playGames(self.args.arenaCompare/2)
-            win_pct = pwins/self.args.arenaCompare/2
+            win_pct = pwins/(self.args.arenaCompare/2)
             my_tuple = (i,win_pct)
             my_string = str(my_tuple)
             
@@ -147,11 +161,24 @@ class Coach():
             arena = Arena( lambda x: np.argmax(nmcts.getActionProb(x, temp=0)),
                           self.game.gp(self.game).play, self.game)
             pwins, nwins, draws = arena.playGames(self.args.arenaCompare/2)
-            win_pct = pwins/self.args.arenaCompare/2
+            win_pct = pwins/(self.args.arenaCompare/2)
             my_tuple = (i,win_pct)
             my_string = str(my_tuple)
             
             full_name = os.path.join(self.args.checkpoint, "greedy.txt")
+            with open(full_name, 'a+') as f:
+                    f.write("%s \n" %(my_string))
+                    
+                    
+            print('PITTING AGAINST AI PLAYER')
+            arena = Arena( lambda x: np.argmax(nmcts.getActionProb(x, temp=0)),
+                          self.n1p, self.game)
+            pwins, nwins, draws = arena.playGames(self.args.arenaCompare/2)
+            win_pct = pwins/(self.args.arenaCompare/2)
+            my_tuple = (i,win_pct)
+            my_string = str(my_tuple)
+            
+            full_name = os.path.join(self.args.checkpoint, "ai.txt")
             with open(full_name, 'a+') as f:
                     f.write("%s \n" %(my_string))
             
