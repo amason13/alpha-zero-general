@@ -18,7 +18,7 @@ g = GobangGame()
 
 # all players
 rp = RandomPlayer(g).play
-gp = GreedyGobangPlayer(g).play
+#gp = GreedyGobangPlayer(g).play
 #hp = HumanOthelloPlayer(g).play
 
 # nnet players
@@ -65,15 +65,15 @@ print(arena.playGames(30, verbose=False))#True))
 print('NN vs greedy')
 arena = Arena.Arena(n2p, gp, g, display=display)
 print(arena.playGames(30, verbose=False))#True))
-
+'''
 print('NN vs random')
 arena = Arena.Arena(n2p, rp, g, display=display)
 print(arena.playGames(30, verbose=False))#True))
-
+'''
 print('lstm vs greedy')
 arena = Arena.Arena(n3p, gp, g, display=display)
 print(arena.playGames(30, verbose=False))#True))
-
+'''
 print('lstm vs random')
 arena = Arena.Arena(n3p, rp, g, display=display)
 print(arena.playGames(30, verbose=False))#True))
