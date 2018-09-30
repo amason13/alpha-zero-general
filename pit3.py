@@ -57,7 +57,7 @@ print(arena.playGames(30, verbose=False))#True))
 print('CNN vs random')
 arena = Arena.Arena(n1p, rp, g, display=display)
 print(arena.playGames(30, verbose=False))#True))
-'''
+
 print('NN vs LSTM')
 arena = Arena.Arena(n2p, n3p, g, display=display)
 print(arena.playGames(30, verbose=False))#True))
@@ -83,4 +83,4 @@ print(arena.playGames(30, verbose=False))#True))
 
 
 
-'''
+
