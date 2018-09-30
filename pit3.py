@@ -17,8 +17,8 @@ any agent.
 g = GobangGame()
 
 # all players
-#rp = RandomPlayer(g).play
-#gp = GreedyOthelloPlayer(g).play
+rp = RandomPlayer(g).play
+gp = GreedyGobangPlayer(g).play
 #hp = HumanOthelloPlayer(g).play
 
 # nnet players
@@ -41,16 +41,40 @@ args3 = dotdict({'numMCTSSims': 25, 'cpuct':1.0})
 mcts3 = MCTS(g, n3, args3)
 n3p = lambda x: np.argmax(mcts2.getActionProb(x, temp=0))
 
+
 print('CNN vs NN')
 arena = Arena.Arena(n1p, n2p, g, display=display)
 print(arena.playGames(30, verbose=False))#True))
-
 print('CNN vs LSTM')
 arena = Arena.Arena(n1p, n3p, g, display=display)
 print(arena.playGames(30, verbose=False))#True))
 
+print('CNN vs greedy')
+arena = Arena.Arena(n1p, gp, g, display=display)
+print(arena.playGames(30, verbose=False))#True))
+
+print('CNN vs random')
+arena = Arena.Arena(n1p, rp, g, display=display)
+print(arena.playGames(30, verbose=False))#True))
+
 print('NN vs LSTM')
 arena = Arena.Arena(n2p, n1p, g, display=display)
+print(arena.playGames(30, verbose=False))#True))
+
+print('NN vs greedy')
+arena = Arena.Arena(n2p, gp, g, display=display)
+print(arena.playGames(30, verbose=False))#True))
+
+print('NN vs random')
+arena = Arena.Arena(n2p, rp, g, display=display)
+print(arena.playGames(30, verbose=False))#True))
+
+print('lstm vs greedy')
+arena = Arena.Arena(n3p, gp, g, display=display)
+print(arena.playGames(30, verbose=False))#True))
+
+print('lstm vs random')
+arena = Arena.Arena(n3p, rp, g, display=display)
 print(arena.playGames(30, verbose=False))#True))
 
 
