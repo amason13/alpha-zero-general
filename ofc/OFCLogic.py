@@ -1,4 +1,4 @@
-from treys import Card, Evaluator
+from treys import Card, Evaluator, Deck
 import itertools
 import numpy as np
 from copy import deepcopy
@@ -696,3 +696,15 @@ def board_to_hands(board,hand1,hand2):
         BOARD_TO_HAND[board[i]].append(full_deck[i])
         
  
+player = playerHand()
+deck = Deck()
+count = 0
+for i in range(100):
+    player.top_hand = deck.draw(3)
+    player.middle_hand = deck.draw(5)
+    player.bottom_hand = deck.draw(5)
+    
+    if player.is_misset() == 1:
+        count+=1
+    deck.shuffle()
+
