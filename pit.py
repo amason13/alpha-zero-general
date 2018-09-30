@@ -39,7 +39,7 @@ n3 = NNet3(g)
 n3.load_checkpoint('./othtemp3/','best.pth.tar')
 args3 = dotdict({'numMCTSSims': 25, 'cpuct':1.0})
 mcts3 = MCTS(g, n3, args3)
-n3p = lambda x: np.argmax(mcts2.getActionProb(x, temp=0))
+n3p = lambda x: np.argmax(mcts3.getActionProb(x, temp=0))
 
 print('CNN vs NN')
 arena = Arena.Arena(n1p, n2p, g, display=display)
