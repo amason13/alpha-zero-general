@@ -2,9 +2,9 @@ import Arena
 from MCTS import MCTS
 from gobang.GobangGame import GobangGame, display
 from gobang.GobangPlayers import *
-from gobang.keras.CNN import NNetWrapper as NNet
-from gobang.keras.NN128 import NNetWrapper as NNet2
-from gobang.keras.LSTM128 import NNetWrapper as NNet3
+from gobang.keras.NNet import NNetWrapper as NNet
+from gobang.keras.NNet2 import NNetWrapper as NNet2
+from gobang.keras.NNet3 import NNetWrapper as NNet3
 
 import numpy as np
 from utils import *
