@@ -12,7 +12,7 @@ from utils import *
 from NeuralNet import NeuralNet
 
 import argparse
-from .GobangNNet import GobangNNet as onnet
+from .GobangNNet import CNN as onnet
 
 args = dotdict({
     'lr': 0.001,
