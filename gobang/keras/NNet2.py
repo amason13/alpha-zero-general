@@ -11,7 +11,7 @@ from utils import *
 from NeuralNet import NeuralNet
 
 import argparse
-from .GobangNNet import GobangNNet2 as onnet
+from .GobangNNet import NN128 as onnet
 
 args = dotdict({
     'lr': 0.001,
