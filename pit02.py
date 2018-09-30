@@ -69,7 +69,7 @@ args7 = dotdict({'numMCTSSims': 25, 'cpuct':1.0})
 mcts7 = MCTS(g, n7, args7)
 lstm256 = lambda x: np.argmax(mcts7.getActionProb(x, temp=0))
 
-
+'''
 print('CNN vs NN64')
 arena = Arena.Arena(cnn, nn64, g, display=display)
 print(arena.playGames(30, verbose=False))#True))
@@ -101,7 +101,7 @@ print(arena.playGames(30, verbose=False))#True))
 print('nn64 vs nn256')
 arena = Arena.Arena(nn64, nn256, g, display=display)
 print(arena.playGames(30, verbose=False))#True))
-
+'''
 print('nn64 vs lstm64')
 arena = Arena.Arena(nn64, lstm64, g, display=display)
 print(arena.playGames(30, verbose=False))#True))
