@@ -17,8 +17,8 @@ any agent.
 g = Connect4Game()
 
 # all players
-#rp = RandomPlayer(g).play
-#gp = GreedyOthelloPlayer(g).play
+rp = RandomPlayer(g).play
+gp = OneStepLookaheadConnect4Player(g).play
 #hp = HumanOthelloPlayer(g).play
 
 # nnet players
